@@ -1,14 +1,30 @@
+/*
+*
+*   Copyright Mak Studio - 2021
+*
+*   Mak Studio is a Houston based supplier of custom furniture and appliances. 
+*   This app lets users design their own pieces and start the purchase process. 
+*
+*   You can reach Mak Studio at www.makstudio.us
+*
+*/
 
+// Standard React Items
 import { useState } from 'react';
+
+// React redux items
 import { connect } from 'react-redux';
+import { signUpStart } from '../../../redux/user/user.actions';
+
+// Components
 import FormInput from '../../forms/form-input.component';
 import FormButton from '../../forms/custom-button.component';
-import { signUpStart } from '../../../redux/user/user.actions';
 
 
 type propObj = {
   signUpStart:any
 }
+
 
 const RegisterForm = ({signUpStart}:propObj)=> {
 

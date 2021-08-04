@@ -1,7 +1,13 @@
 
 /*
 *
-*   
+*   Copyright Mak Studio - 2021
+*
+*   Mak Studio is a Houston based supplier of custom furniture and appliances. 
+*   This app lets users design their own pieces and start the purchase process. 
+*
+*   You can reach Mak Studio at www.makstudio.us
+*
 *
 */
 
@@ -12,6 +18,7 @@ import { FC, ReactElement } from 'react';
 // Import the hook for images
 import useFirestoreImage from '../shared/hooks/useFirestoreImage';
 
+// Components
 import Link from 'next/link';
 import Image from 'next/image';
 

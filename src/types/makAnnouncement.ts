@@ -1,8 +1,16 @@
-
 /*
 *
+*   Copyright Mak Studio - 2021
 *
-*	This model represents the announcements made by mak
+*   Mak Studio is a Houston based supplier of custom furniture and appliances. 
+*   This app lets users design their own pieces and start the purchase process. 
+*
+*   You can reach Mak Studio at www.makstudio.us
+*
+*
+*
+*
+*	  This model represents the announcements made by mak
 *
 */
 

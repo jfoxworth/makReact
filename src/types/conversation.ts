@@ -1,9 +1,18 @@
 
 /*
 *
+*   Copyright Mak Studio - 2021
 *
-*	A conversation is a chat between two or more people
-*	Conversations have participants and messages
+*   Mak Studio is a Houston based supplier of custom furniture and appliances. 
+*   This app lets users design their own pieces and start the purchase process. 
+*
+*   You can reach Mak Studio at www.makstudio.us
+*
+*
+*
+*
+*		A conversation is a chat between two or more people
+*		Conversations have participants and messages
 *
 *
 */

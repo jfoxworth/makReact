@@ -1,10 +1,16 @@
-
-
 /*
 *
+*   Copyright Mak Studio - 2021
 *
-*	A project is when a user creates an instance of a model and will
-*	then edit that model's parameters in as many versions as necessary.
+*   Mak Studio is a Houston based supplier of custom furniture and appliances. 
+*   This app lets users design their own pieces and start the purchase process. 
+*
+*   You can reach Mak Studio at www.makstudio.us
+*
+*
+*
+*		A project is when a user creates an instance of a model and will
+*		then edit that model's parameters in as many versions as necessary.
 *
 */
 

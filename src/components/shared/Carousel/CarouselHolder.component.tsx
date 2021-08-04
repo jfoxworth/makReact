@@ -1,20 +1,24 @@
 /*
 *
-*   This component takes in two arrays. The first is the 
-*   array of images. The second is the array of labels
+*   Copyright Mak Studio - 2021
+*
+*   Mak Studio is a Houston based supplier of custom furniture and appliances. 
+*   This app lets users design their own pieces and start the purchase process. 
+*
+*   You can reach Mak Studio at www.makstudio.us
 *
 */
 
 // Standard React items
 import { FC, ReactElement} from 'react';
 
-// Carousel Elements
+// Hook for image
+import useFirestoreImage from '../hooks/useFirestoreImage';
+
+// Components - Carousel Elements
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 import ImageCreator from '../ImageCreator/ImageCreator.component';
-
-// Hook for image
-import useFirestoreImage from '../hooks/useFirestoreImage';
 
 const CarouselHolder:FC<any> = ({imageArray}:{imageArray:any}):ReactElement => {
 

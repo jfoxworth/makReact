@@ -1,18 +1,25 @@
+/*
+*
+*   Copyright Mak Studio - 2021
+*
+*   Mak Studio is a Houston based supplier of custom furniture and appliances. 
+*   This app lets users design their own pieces and start the purchase process. 
+*
+*   You can reach Mak Studio at www.makstudio.us
+*
+*/
 
 // Standard React items
-import { FC, ReactElement, SyntheticEvent, useState, useEffect } from 'react';
-
+import { FC, ReactElement, SyntheticEvent, useState } from 'react';
 
 // Models
 import makProject from '../../../../src/types/makProject';
-
 
 // Components
 import ContentBox from '../../../../src/components/shared/contentBox/contentBox.component';
 import ContentBoxContent from '../../../../src/components/shared/contentBox/contentBoxContent.component';
 import ContentBoxColumn from '../../../../src/components/shared/contentBox/contentBoxColumn.component';
 import ContentBoxHeader from '../../../../src/components/shared/contentBox/contentBoxHeader.component';
-
 
 
 const ProjectNameDesc:FC<any> = ({thisProject}:{thisProject:makProject}):ReactElement => {
@@ -55,16 +62,9 @@ const ProjectNameDesc:FC<any> = ({thisProject}:{thisProject:makProject}):ReactEl
           </ContentBoxContent>
         </ContentBox>
       </div>
-    
-          
-
-    
-
 
   )
 
 }
-
-
 
 export default ProjectNameDesc

@@ -1,8 +1,16 @@
 
 /*
 *
-*	A company is an entity that makes a product to be sold on Mak.
-*	There is a separate collection known as employees that ties 
+*   Copyright Mak Studio - 2021
+*
+*   Mak Studio is a Houston based supplier of custom furniture and appliances. 
+*   This app lets users design their own pieces and start the purchase process. 
+*
+*   You can reach Mak Studio at www.makstudio.us
+*
+*
+*	  A company is an entity that makes a product to be sold on Mak.
+*	  There is a separate collection known as employees that ties 
 * 	accounts to companies.
 *
 */
