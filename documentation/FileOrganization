@@ -1,0 +1,45 @@
+# Mak Studio Documentation Structure
+
+## Structure of a file
+
+All React files should have the same structure. This allows for better understanding of the code and for better debugging. The components of each file should be as follows:
+
+  - Comment with Mak Studio's copyright and description
+  - Imports
+    - Standard React items
+    - Redux related items
+      - This includes any selectors or reducers used
+    - Hooks
+    - Models
+    - Components
+  - Interface or Type for component props
+  - Component function
+  - Interface for styled component props
+  - Styled component
+
+Before each section of imports, there should be a comment with the phrase above denoting that section. There should be one line between each section of import and two lines between each of the larger sections above. If there are no items to import for that section, it should be skipped (no comment).
+
+For example ...
+
+```
+    // Standard React items
+    import React, { FC, ReactElement, useState } from 'react';
+    import styled, { css } from 'styled-components';
+
+    // Hooks
+    import useTimeDate from '../../shared/hooks/useTimeDate';
+
+    // Models
+    import makVersion from '../../../types/makVersion';
+
+    // Components
+    import FaIcon from '../../../components/shared/faIcons/faIcon.component';
+    
+
+    type propItems={
+      thisVersion:makVersion,
+      selectedVersionId:string,
+      handleVersionClick?:Function
+    }
+
+```

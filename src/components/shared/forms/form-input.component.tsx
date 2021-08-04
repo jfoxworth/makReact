@@ -11,7 +11,7 @@ import React, { FC, ReactElement } from 'react';
 import FaIcon from '../faIcons/faIcon.component';
 
 type formInputType = {
-  handleChange:any,
+  handleChange:React.ChangeEventHandler<HTMLInputElement>,
   value?:string,
   label?:string,
   placeholder?:string,
@@ -20,7 +20,8 @@ type formInputType = {
   name?:string,
   error?:boolean,
   icon?:string,
-  errorMessage?:string
+  errorMessage?:string,
+  id?:string
 }
 
 
@@ -33,41 +34,46 @@ const FormInput :FC<formInputType> = ({ handleChange,
                                         name='',
                                         error=false,
                                         errorMessage='',
-                                        icon='' }):ReactElement=>(
+                                        icon='',
+                                        id='' }):ReactElement=>{
 
-  <div className="field has-flex-label has-validation">
 
-    <label>
-        { label ? <span>{label}</span> : null }
-        { error ? <span className="error">{errorMessage}</span> : null }
-    </label>
-    
-    <div className="control is-bigger has-icon">
+  return (
 
-        <input type={type} 
-               className="input" 
-               name={name} 
-               onChange={handleChange}
-               value={value}
-               placeholder={placeholder} />
+    <div className="field has-flex-label has-validation">
 
-        { icon &&
-        <div className="form-icon">
-            <FaIcon icon={icon} />
-        </div> }
+      <label>
+          { label ? <span>{label}</span> : null }
+          { error ? <span className="error">{errorMessage}</span> : null }
+      </label>
+      
+      <div className="control is-bigger has-icon">
 
-        { error &&
-        <div className="error-icon">
-            <i data-feather="x"></i>
-        </div> }
+          <input type={type} 
+                className="input" 
+                name={name} 
+                onChange={handleChange}
+                value={value}
+                placeholder={placeholder}
+                id={id} />
+
+          { icon &&
+          <div className="form-icon">
+              <FaIcon icon={icon} />
+          </div> }
+
+          { error &&
+          <div className="error-icon">
+              <i data-feather="x"></i>
+          </div> }
+
+      </div>
 
     </div>
-
-  </div>
+  )
                   
 
-
-)
+}
 
 export default FormInput
 

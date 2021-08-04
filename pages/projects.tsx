@@ -10,7 +10,7 @@ import { selectProjects } from '../src/redux/projects/projects.selectors';
 
 // Other components
 import HeaderTitle from '../src/components/shared/HeaderTitle/HeaderTitle.component';
-import ProjectsContents from '../src/components/projects/projectContent.component';
+import ProjectsContents from '../src/components/projects/projectsContent.component';
 
 const Projects:FC<any> = ():ReactElement => {
 

@@ -12,10 +12,12 @@ type propItems = {
   text:string,
   editable:boolean,
   editStatus:boolean,
-  handleChange:Function
+  handleChange:React.ChangeEventHandler<HTMLInputElement>
+  icon?:string,
+  id?:string
 }
 
-const ContentBoxItem:FC<propItems> = ({name, text, editable, editStatus, handleChange=()=>{}}):ReactElement => (
+const ContentBoxItem:FC<propItems> = ({name, text, editable, editStatus, handleChange=()=>{}, icon, id='' }):ReactElement => (
 
   <>
     { 
@@ -31,11 +33,13 @@ const ContentBoxItem:FC<propItems> = ({name, text, editable, editStatus, handleC
       <div className="info-block">
         <FormInput handleChange={handleChange} 
                   name={name}
+                  icon={icon}
                   label={name}
                   placeholder={''}
                   value={text} 
                   type={"text"}
-                  error={false} />
+                  error={false}
+                  id={id} />
       </div>
     }
   </>

@@ -9,6 +9,7 @@ import { emailSignInSuccess,
          signUpSuccess,
          signUpFailure } from "./user.actions";
 import { fetchProjectsStart } from '../projects/projects.actions';
+import { fetchVersionsStart } from "../versions/versions.actions";
 
 
 export function* signInWithEmail({payload:{email, password}}){
@@ -39,6 +40,7 @@ export function* isUserAuthenticated(){
       emailSignInSuccess({id:userSnapshot.id, ...userSnapshot.data()})
     )
     yield put(fetchProjectsStart());
+    yield put(fetchVersionsStart());
   }catch(error){
     yield put(emailSignInFailure(error))
   }

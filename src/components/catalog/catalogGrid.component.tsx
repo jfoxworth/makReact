@@ -1,8 +1,14 @@
 /*
 *
-*   This the code that puts out the list of designs
+*   Copyright Mak Studio - 2021
 *
-*/ 
+*   Mak Studio is a Houston based supplier of custom furniture and appliances. 
+*   This app lets users design their own pieces and start the purchase process. 
+*
+*   You can reach Mak Studio at www.makstudio.us
+*
+*/
+
 
 // Standard React items
 import {FC, ReactElement } from 'react';
@@ -11,9 +17,8 @@ import {FC, ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 import { selectDesigns } from '../../redux/designs/designs.selectors';
 
-// Required components
+// Components
 import CatalogTile from './catalogTile.component';
-
 
 
 const CatalogGrid:FC<any> = ():ReactElement => {

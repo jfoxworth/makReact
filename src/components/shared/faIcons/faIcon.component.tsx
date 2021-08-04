@@ -29,7 +29,10 @@ import { FaTag,
          FaPlusSquare,
          FaBook,
          FaBriefcase,
-        FaKey } from 'react-icons/fa';
+         FaLaptop,
+        FaKey, 
+        FaDollarSign,
+        FaCopy} from 'react-icons/fa';
 
 
 type propsObj = {
@@ -61,6 +64,9 @@ const FaIcon:FC<propsObj> = ({icon}):ReactElement => {
       { (icon==="PlusSquare") && <FaPlusSquare /> }
       { (icon==="Book") && <FaBook /> }
       { (icon==="Briefcase") && <FaBriefcase /> }
+      { (icon==="Laptop") && <FaLaptop /> }
+      { (icon==="Dollar") && <FaDollarSign /> }
+      { (icon==="Copy") && <FaCopy /> }
     </>
   )
 }

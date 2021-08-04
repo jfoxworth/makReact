@@ -1,19 +1,30 @@
 
 
 // Standard React items
-import { FC, ReactElement } from 'react';
+import { ReactElement } from 'react';
+import styled, { css } from 'styled-components';
 
 type propItems = {
-  children:ReactElement[]
+  width:string,
+  children:ReactElement[] | ReactElement
 }
 
-const ContentBoxColumn = ({ children }:propItems):ReactElement => (
+const ContentBoxColumn = ({ width, children }:propItems):ReactElement => (
   
-  <div className="column is-6">
+  <StyledBoxColumn className={`column is-${width}`} style={{'display':'inline-block'}}>
     {children}
-  </div>
+  </StyledBoxColumn>
 
 )
+
+
+const StyledBoxColumn = styled.div`
+display:inline-block;
+margin:20px auto;
+vertical-align:top;
+`
+
+
 
 export default ContentBoxColumn
 

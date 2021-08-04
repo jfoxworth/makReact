@@ -7,7 +7,7 @@
 *
 */
 
-export interface makVersion {
+interface makVersion {
 	id 						: string;		// UID for the version
 	dateCreated 	: number;		// Date that this project was created
 	creatorId			: string;		// Id of the user that created if
@@ -28,3 +28,5 @@ export interface makVersion {
 	deleted 			: boolean;	// If true, then the item has been deleted
 
 }
+
+export default makVersion

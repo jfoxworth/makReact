@@ -20,7 +20,7 @@ type propObj = {
 }
 
 
-const Login = ({emailSignInStart, signOutStart}:propObj) => {
+const LoginForm = ({emailSignInStart, signOutStart}:propObj) => {
 
   const [ userCredentials, setCredentials ] = useState({ email:'', password:''});
   
@@ -93,4 +93,4 @@ const mapDispatchToProps = (dispatch:any) => ({
   signOutStart:() => dispatch(signOutStart())
 })
 
-export default connect(null, mapDispatchToProps)(Login)
+export default connect(null, mapDispatchToProps)(LoginForm)

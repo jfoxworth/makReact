@@ -10,7 +10,6 @@ export const fetchProjectsStart = () =>({
 })
 
 export const fetchProjectsStartAsync = () =>{
-  console.log('Here')
   return (dispatch:any) => {
 
     const projectsRef = firestore.collection('projects');

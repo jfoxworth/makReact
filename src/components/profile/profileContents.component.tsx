@@ -64,11 +64,11 @@ const ProfileContents:FC<any> = ():ReactElement => {
             <ContentBox>
               <ContentBoxHeader title={"Account Details"} editable={true} handleEditClick={handleEditClick}/>
               <ContentBoxContent>
-                <ContentBoxColumn>
+                <ContentBoxColumn width={'6'}>
                   <ContentBox.ContentBoxItem name={'Name'} text={user.currentUser.name} editable={true} editStatus={contentEditStatus} handleChange={handleInputChange} />
                   <ContentBox.ContentBoxItem name={'Display Name'} text={user.currentUser.displayName} editable={true} editStatus={contentEditStatus} handleChange={handleInputChange} />
                 </ContentBoxColumn>
-                <ContentBoxColumn>
+                <ContentBoxColumn width={'6'}>
                   <ContentBox.ContentBoxItem name={'Email'} text={'jfoxworth@cadwolf.com'} editable={false} editStatus={contentEditStatus} handleChange={handleInputChange} />
                   <ContentBox.ContentBoxItem name={'Phone Number'} text={'xxx-xxx-xxxx'} editable={true} editStatus={contentEditStatus} handleChange={handleInputChange} />
                 </ContentBoxColumn>

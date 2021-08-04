@@ -1,17 +1,24 @@
 /*
 *
-*   This the code that displays a single tile for the catalog. Each tile represents
-*   one design. 
+*   Copyright Mak Studio - 2021
 *
-*/ 
+*   Mak Studio is a Houston based supplier of custom furniture and appliances. 
+*   This app lets users design their own pieces and start the purchase process. 
+*
+*   You can reach Mak Studio at www.makstudio.us
+*
+*/
 
 // Standard React items
 import {FC, ReactElement} from 'react';
-
-// Import custom hook
-import useFirestoreImage from '../shared/hooks/useFirestoreImage';
 import Link from 'next/link';
+
+// Hooks
+import useFirestoreImage from '../shared/hooks/useFirestoreImage';
+
+// Components
 import FaIcon from '../shared/faIcons/faIcon.component';
+
 
 const CatalogTile:FC<any> = ({design}:any):ReactElement => {
 

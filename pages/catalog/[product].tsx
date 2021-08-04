@@ -39,8 +39,9 @@ const Product:FC<any> = ():ReactElement => {
             <ProductPage.ProductPageInfoCat text={thisDesign.category} />
             <ProductPage.ProductPageInfoDesc text={thisDesign.description} />
             <ProductPage.ProductPagePrice text={thisDesign.initialPrice} />
-            <ProductPage.ProductPageButton text={"Create New Project With This Design"} color={'green'} icon={'Cog'} />
-            <ProductPage.ProductPageButton text={"Open in design Studio"} color={'red'}  icon={'Cog'} />
+            <ProductPage.ProductPageButton text={"Create Project With This Design"} color={'green'} icon={'PlusSquare'} />
+            <ProductPage.ProductPageButton text={"Open in design Studio"} color={'red'}  icon={'Cubes'} />
+            <ProductPage.ProductPageButton text={"View brochure for this item"} color={'black'} icon={'Book'} />
               <ProductPage.ProductPageProjectListSection >
                 <ProductPage.ProductPageProjectListTitle />
                 <ProductPage.ProductPageProjectList >
@@ -58,8 +59,6 @@ const Product:FC<any> = ():ReactElement => {
 
       }
     </>
-    
-
     
 
 

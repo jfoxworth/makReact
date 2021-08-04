@@ -1,14 +1,26 @@
+/*
+*
+*   Copyright Mak Studio - 2021
+*
+*   Mak Studio is a Houston based supplier of custom furniture and appliances. 
+*   This app lets users design their own pieces and start the purchase process. 
+*
+*   You can reach Mak Studio at www.makstudio.us
+*
+*/
+
 
 // Standard React items
 import { FC, ReactElement} from 'react';
-import useFirestoreImage from '../shared/hooks/useFirestoreImage';
 import Image from 'next/image';
+
+// Hooks
+import useFirestoreImage from '../shared/hooks/useFirestoreImage';
+
 
 const CatalogImage:FC<any> = ({image}:{image:string}):ReactElement => {
 
-  console.log(image)
   const fireImage = useFirestoreImage(image);
-  console.log(fireImage)
 
   return(
      

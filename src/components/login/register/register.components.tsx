@@ -10,7 +10,7 @@ type propObj = {
   signUpStart:any
 }
 
-const Register = ({signUpStart}:propObj)=> {
+const RegisterForm = ({signUpStart}:propObj)=> {
 
   const [userCredentials, setUserCredentials] = useState({
     email : '',
@@ -104,6 +104,6 @@ const mapDispatchToProps = (dispatch:any) => ({
   signUpStart : (userCredentials:any) => dispatch(signUpStart(userCredentials))
 });
 
-export default connect(null, mapDispatchToProps)(Register);
+export default connect(null, mapDispatchToProps)(RegisterForm);
 
 
