@@ -12,6 +12,7 @@
 
 // Standard React items
 import { FC, ReactElement} from 'react';
+import styled from 'styled-components';
 
 // Models
 import makDesign from '../../../types/makDesign';
@@ -20,7 +21,12 @@ import makDesign from '../../../types/makDesign';
 import CarouselHolder from '../../shared/Carousel/CarouselHolder.component';
 
 
-const ProductPageImagePanel:FC<any> = ({design}:{design:makDesign}):ReactElement => {
+interface propType {
+  design:makDesign
+}
+
+
+const ProductPageImagePanel:FC<propType> = ({design}:propType):ReactElement => {
 
   let imageArray:string[]=[];
 
@@ -32,21 +38,35 @@ const ProductPageImagePanel:FC<any> = ({design}:{design:makDesign}):ReactElement
     
     <>
     { imageArray.length &&
-      <div className="product-panel">
+      <StyledProductPanel>
 
-        <div id="product-view" className="product-image translateLeft">
+        <StyledImagePanel>
+
 
           <CarouselHolder imageArray={imageArray} />
 
-        </div>
+        </StyledImagePanel>
 
-      </div>
+      </StyledProductPanel>
     }
     </>
 
   )
 
 }
+
+const StyledProductPanel = styled.div`
+  width:50%;
+  z-index:1;
+  vertical-align:top;
+  display:inline-block;
+`;
+
+const StyledImagePanel = styled.div`
+  padding:5% 0;
+  position:relative;
+  text-align:center;
+`;
 
 
 export default ProductPageImagePanel

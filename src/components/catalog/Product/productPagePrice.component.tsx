@@ -19,24 +19,9 @@ const ProductPagePrice = ({text}:{text:string}):ReactElement => {
 
   return(
     <StyledSection >
-      <div className="product-controls">
 
-        <StyledRelative>
-          <div>
-            <StyledHeading>
-              <div>Initial Price</div>
-            </StyledHeading>
-          </div>
-        </StyledRelative>
-
-        <StyledRelative>
-          <div>
-            <StyledValue>
-              <div>${text}</div>
-            </StyledValue>                
-          </div>
-        </StyledRelative>
-        </div>
+      <StyledHeading>Initial Price</StyledHeading>
+      <StyledValue>${text}</StyledValue>                
 
     </StyledSection>
   )
@@ -44,14 +29,9 @@ const ProductPagePrice = ({text}:{text:string}):ReactElement => {
 
 
 const StyledSection = styled.div`
-  padding-top:20px;
-  display:flex;
-  align-items:baseline;
-  justify-content:flex-start`;
-
-const StyledRelative = styled.div`
-  position:relative;
-  display:block`;
+  display:inline-flex;
+  align-items:center;
+  margin:25px auto`;
 
 const StyledHeading = styled.div`
   display:block;
@@ -63,7 +43,6 @@ const StyledHeading = styled.div`
 
 const StyledValue = styled.div`
   font-size:1.6rem;
-  font-weight:700;
-  color:#0023ff;`;
+  font-weight:700;`;
 
 export default ProductPagePrice

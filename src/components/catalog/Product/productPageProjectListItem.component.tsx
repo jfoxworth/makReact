@@ -17,6 +17,9 @@ import Link from 'next/link';
 // Models
 import makProject from '../../../types/makProject';
 
+// Hooks
+import useTimeDate from '../../shared/hooks/useTimeDate';
+
 // Components
 import FaIcon from '../../shared/faIcons/faIcon.component';
 import 'bulma-tooltip';
@@ -25,23 +28,7 @@ import 'bulma-tooltip';
 
 const ProductPageProjectListItem = ({project}:{project:makProject}):ReactElement => {
 
-  let monthArray = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'June',
-    'July',
-    'Aug',
-    'Sept',
-    'Oct',
-    'Nov',
-    'Dec'
-  ]
-  let dateString = monthArray[new Date(project.dateCreated).getMonth()]+ ' '+
-                   new Date(project.dateCreated).getDay()+', '+
-                   new Date(project.dateCreated).getFullYear();
+  let dateString = useTimeDate(project.dateCreated, 'MonDY')
 
   return(
     <StyledSection >

@@ -11,6 +11,7 @@
 
 // Standard React items
 import { ReactElement} from 'react';
+import styled from 'styled-components';
 
 // Components
 import ProductPageImagePanel from './productPageImagePanel.component';
@@ -36,9 +37,11 @@ const ProductPage = ({children}:propItems):ReactElement => {
 
   return(
     
+    <StyledPanel>
     <div className="product-container" >
       {children}
     </div>
+    </StyledPanel>
 
   )
 
@@ -58,5 +61,9 @@ ProductPage.ProductPageProjectListTitle = ProductPageProjectListTitle;
 ProductPage.ProductPageProjectListItem = ProductPageProjectListItem;
 
 
+
+const StyledPanel = styled.div`
+  background:#FFFFFF;
+`;
 
 export default ProductPage

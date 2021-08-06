@@ -38,6 +38,7 @@ const ProjectVersionMeasurements:FC<propItems> = ({measurements}:propItems):Reac
       </ListHeader>
       <>
       {
+        measurements.length >0 &&
         measurements.map((meas:any, index:number)=>(
           <ListLine percent={60} key={`meas${index}`}>
             <ListName text={meas.name} percent={60} />

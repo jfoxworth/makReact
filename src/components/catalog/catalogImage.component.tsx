@@ -18,7 +18,11 @@ import Image from 'next/image';
 import useFirestoreImage from '../shared/hooks/useFirestoreImage';
 
 
-const CatalogImage:FC<any> = ({image}:{image:string}):ReactElement => {
+interface propType {
+  image:string
+}
+
+const CatalogImage:FC<propType> = ({image}:propType):ReactElement => {
 
   const fireImage = useFirestoreImage(image);
 

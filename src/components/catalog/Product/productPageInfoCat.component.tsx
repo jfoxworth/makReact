@@ -11,15 +11,25 @@
 
 // Standard React items
 import { ReactElement} from 'react';
+import styled from 'styled-components';
 
 
 const ProductPageInfoCat = ({text}:{text:string}):ReactElement => {
 
 
   return(
-    <span id="product-details-sku">{text}</span>
+    <StyledSpan>
+      {text}
+    </StyledSpan>
   )
 }
+
+const StyledSpan = styled.div`
+  font-style:inherit;
+  font-weight:inherit;
+  color:#acacac;
+  font-style:italic;
+`;
 
 
 export default ProductPageInfoCat

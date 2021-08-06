@@ -10,7 +10,7 @@ import Image from 'next/image';
 
 
 
-const Login:FC<any> = ():ReactElement => {
+const Login:FC = ():ReactElement => {
 
   const [showLogin, setShowLogin] = useState(true);
 

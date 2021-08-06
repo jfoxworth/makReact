@@ -20,7 +20,13 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from 'react-responsive-carousel';
 import ImageCreator from '../ImageCreator/ImageCreator.component';
 
-const CarouselHolder:FC<any> = ({imageArray}:{imageArray:any}):ReactElement => {
+
+interface propType {
+  imageArray:string[]
+}
+
+
+const CarouselHolder:FC<propType> = ({imageArray}:propType):ReactElement => {
 
   return(
     

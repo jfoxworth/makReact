@@ -16,7 +16,10 @@ import ProjectActionTypes from "./projects.types";
 import { firestore, convertCollectionSnapshotToMap } from '../../../firebase/firebase.utils';
 import {
   fetchProjectsSuccess,
-  fetchProjectsFailure
+  fetchProjectsFailure,
+  projectsUpdateSuccess,
+  projectsUpdateFailure,
+  fetchProjectsStart
 } from './projects.actions';
 import { selectUser } from "../user/user.selector";
 
@@ -35,7 +38,7 @@ export function* fetchProjectsAsync(){
   }
 }
 
-export function* fetchProjectsStart(){
+export function* fetchProjectsStartSagas(){
   yield takeLatest(
     ProjectActionTypes.FETCH_PROJECTS_START,
     fetchProjectsAsync)
@@ -43,9 +46,30 @@ export function* fetchProjectsStart(){
 
 
 
+export function* projectsUpdateAsync(payload){
+
+  let thisProject=payload.payload
+  try {
+    const projectsRef = firestore.collection('projects');
+		projectsRef.doc( thisProject.id ).update( thisProject );
+    yield put(projectsUpdateSuccess());
+    yield put(fetchProjectsStart());
+  }catch(error){
+    yield put(projectsUpdateFailure(error.message))
+  }
+}
+
+export function* projectsUpdateStart(thisProject){
+  yield takeLatest(
+    ProjectActionTypes.PROJECTS_UPDATE_START,
+    projectsUpdateAsync)
+}
+
+
 export function* projectsSagas(){
   yield all(
-    [call(fetchProjectsStart)]
-    )
+    [call(fetchProjectsStartSagas),
+     call(projectsUpdateStart)]
+  )
   
 }

@@ -11,18 +11,28 @@
 
 // Standard React items
 import { ReactElement} from 'react';
+import styled from 'styled-components';
 
 
 const ProductPageInfoDesc = ({text}:{text:string}):ReactElement => {
 
 
   return(
-    <p id="product-details-shortDesc" 
-       className="product-description">
+    <StyledDesc>
          {text}
-    </p>
+    </StyledDesc>
     )
 }
 
+
+const StyledDesc = styled.div`
+  padding-top:20px;
+  color:#999;
+  display:block;
+  margin-block-start:1em;
+  margin-block-end:1em;
+  margin-inline-start:0px;
+  margin-inline-end:0px;
+`;
 
 export default ProductPageInfoDesc

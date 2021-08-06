@@ -19,7 +19,7 @@ const ProductPageProjectListTitle = ():ReactElement => {
 
 
   return(
-    <StyledTitle >
+    <StyledTitle className={"title is-4"}>
         My projects with this design 
     </StyledTitle>
   )
@@ -27,14 +27,9 @@ const ProductPageProjectListTitle = ():ReactElement => {
 
 
 const StyledTitle = styled.div`
-  padding-top:20px;
-  padding-bottom:10px;
-  display:flex;
-  align-items:baseline;
-  justify-content:flex-start;
-  border-bottom:1px solid #ccc;
-  width:100%;
-  display:block`;
+  padding-top:30px;
+  text-align:center;
+`;
 
 
 export default ProductPageProjectListTitle

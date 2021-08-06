@@ -41,7 +41,24 @@ const projectsReducer = (state=INITIAL_STATE, action:any)=>{
           isFetching:false,
           errorMessage:action.payload
       }
-    
+      case ProjectActionTypes.PROJECTS_UPDATE_START:
+        return {
+          ...state,
+          isFetching:true,
+          project:action.payload
+      }
+      case ProjectActionTypes.PROJECTS_UPDATE_SUCCESS:
+        return {
+          ...state,
+          isFetching:false
+      }
+      case ProjectActionTypes.PROJECTS_UPDATE_FAILURE:
+        return {
+          ...state,
+          isFetching:false,
+          errorMessage:action.payload
+      }
+      
 
     default:
       return state;

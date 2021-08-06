@@ -5,7 +5,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 
 
-const Home:FC<any> = ():ReactElement => {
+const Home:FC = ():ReactElement => {
 
   const router = useRouter();
   useEffect(()=>{

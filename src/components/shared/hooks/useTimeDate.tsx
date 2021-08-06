@@ -25,8 +25,23 @@ const useTimeDate = (dateString:number, returnType:string):string=>{
   const [hour, minutes, seconds] = [workingDate.getHours(), workingDate.getMinutes(), workingDate.getSeconds()];
 
   const standardHour = hour > 12 ? hour-12 : hour;
-  const meridian = hour > 12 ? 'pm' : 'am'
-  
+  const meridian = hour > 12 ? 'pm' : 'am';
+
+  let monthArray = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec'
+  ]
+
   switch ( returnType ){
   
     case 'Year':
@@ -39,6 +54,10 @@ const useTimeDate = (dateString:number, returnType:string):string=>{
 
     case 'TMDY':
       returnDate = standardHour.toString()+':'+minutes.toString()+meridian+' '+returnDate;
+    break
+
+    case 'MonDY':
+      returnDate = monthArray[month]+' '+date.toString()+', '+year.toString();
     break
 
   }

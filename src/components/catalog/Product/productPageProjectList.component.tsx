@@ -31,7 +31,7 @@ const ProductPageProjectList = ({children}:{children:propItems}):ReactElement =>
 
 
 const StyledSection = styled.div`
-  padding-top:20px;
+  padding-top:10px;
   width:100%;
   align-items:baseline;
   justify-content:flex-start`;

@@ -13,7 +13,7 @@ import ProfileContents from '../src/components/profile/profileContents.component
 import HeaderTitle from '../src/components/shared/HeaderTitle/HeaderTitle.component';
 
 
-const Profile:FC<any> = ():ReactElement => {
+const Profile:FC = ():ReactElement => {
 
   const user = useSelector(selectUser);
 

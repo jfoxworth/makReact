@@ -24,7 +24,7 @@ import useFirestoreImage from '../shared/hooks/useFirestoreImage';
 import Image from 'next/image';
 
 
-const ProfileUser:FC<any> = ():ReactElement => {
+const ProfileUser:FC = ():ReactElement => {
 
   const user = useSelector(selectUser);
 	const projects = useSelector(selectProjects);

@@ -26,15 +26,21 @@ import ProjectNameDesc from './projectNameDesc.component';
 import ProjectVersionData from './projectVersionData.component';
 
 
-const ProjectContents:FC<any> = ({thisProject, thisDesign}:{thisProject:makProject, thisDesign:makDesign}):ReactElement => {
+interface propType {
+  thisProject:makProject
+  thisDesign:makDesign
+}
+
+
+const ProjectContents:FC<propType> = ({thisProject, thisDesign}:propType):ReactElement => {
 
   const myVersions = useSelector(selectVersions);
-  let theseVersions = myVersions.versions.filter((thisVer:makVersion)=>(thisVer.projectId==thisProject.id));
+  let theseVersions = myVersions.versions.filter((thisVer:makVersion)=>(thisVer.projectId==thisProject.id)).flat();
 
   return(
 
     <>
-      { thisProject && <ProjectNameDesc thisProject={thisProject} /> }
+      { thisProject && <ProjectNameDesc thisProject={thisProject} thisDesign={thisDesign} /> }
       { theseVersions.length>0 && <ProjectVersionData thisProject={thisProject} versions={theseVersions}  /> }
     </>
 

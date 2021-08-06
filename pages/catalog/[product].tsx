@@ -14,7 +14,7 @@ import { useSelector } from 'react-redux';
 // Components
 import ProductPage from '../../src/components/catalog/Product/productPage.component';
 
-const Product:FC<any> = ():ReactElement => {
+const Product:FC = ():ReactElement => {
 
   // Pull the product ID from the URL
   const router = useRouter()
@@ -32,7 +32,6 @@ const Product:FC<any> = ():ReactElement => {
     <>
       { thisDesign &&
         <ProductPage >
-          <ProductPage.ProductPageImagePanel design={thisDesign} />
           <ProductPage.ProductPageInfoPanel>
             <ProductPage.ProductPageBack backUrl={'/catalog'} />
             <ProductPage.ProductPageInfoTitle text={thisDesign.title} />
@@ -54,6 +53,7 @@ const Product:FC<any> = ():ReactElement => {
                 </ProductPage.ProductPageProjectList >
               </ProductPage.ProductPageProjectListSection>
           </ProductPage.ProductPageInfoPanel>
+          <ProductPage.ProductPageImagePanel design={thisDesign} />
         </ProductPage>
 
 

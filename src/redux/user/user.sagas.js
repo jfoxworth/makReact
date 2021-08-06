@@ -22,6 +22,7 @@ import { emailSignInSuccess,
          signUpFailure } from "./user.actions";
 import { fetchProjectsStart } from '../projects/projects.actions';
 import { fetchVersionsStart } from "../versions/versions.actions";
+import { projectsUpdateStart } from '../projects/projects.actions';
 
 
 export function* signInWithEmail({payload:{email, password}}){

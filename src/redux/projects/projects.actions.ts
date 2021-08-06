@@ -25,6 +25,7 @@ export const fetchProjectsStart = () =>({
 })
 
 export const fetchProjectsStartAsync = () =>{
+
   return (dispatch:any) => {
 
     const projectsRef = firestore.collection('projects');
@@ -46,5 +47,25 @@ export const fetchProjectsSuccess = (projectsArray:makProject[]) =>({
 
 export const fetchProjectsFailure = (errorMessage:any) =>({
   type:ProjectActionTypes.FETCH_PROJECTS_FAILURE,
+  payload:errorMessage
+})
+
+
+
+
+export const projectsUpdateStart = (project:makProject) =>({
+  type:ProjectActionTypes.PROJECTS_UPDATE_START,
+  payload:project
+})
+
+
+
+export const projectsUpdateSuccess = () =>({
+  type:ProjectActionTypes.PROJECTS_UPDATE_SUCCESS
+})
+
+
+export const projectsUpdateFailure = (errorMessage:any) =>({
+  type:ProjectActionTypes.PROJECTS_UPDATE_FAILURE,
   payload:errorMessage
 })

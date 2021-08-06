@@ -3,16 +3,11 @@
 import { FC, ReactElement} from 'react';
 
 
-// Redux related items
-import { useSelector } from 'react-redux';
-import { selectProjects } from '../src/redux/projects/projects.selectors';
-
-
 // Other components
 import HeaderTitle from '../src/components/shared/HeaderTitle/HeaderTitle.component';
 import ProjectsContents from '../src/components/projects/projectsContent.component';
 
-const Projects:FC<any> = ():ReactElement => {
+const Projects:FC = ():ReactElement => {
 
 
   return(

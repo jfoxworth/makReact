@@ -21,7 +21,7 @@ import { selectDesigns } from '../../redux/designs/designs.selectors';
 import CatalogTile from './catalogTile.component';
 
 
-const CatalogGrid:FC<any> = ():ReactElement => {
+const CatalogGrid:FC = ():ReactElement => {
 
   const designs = useSelector(selectDesigns);
 

@@ -21,8 +21,12 @@ const ProductPageButton = ({icon, text, color}:{icon:string, text:string, color:
 
   return(
     <StyledSection >
-        <StyledButton color={color}><FaIcon icon={icon} /></StyledButton>
-        {text}
+      <StyledButton className="button is-info">
+        <span className="icon">
+          <FaIcon icon={icon} />
+        </span>
+        <span>{text}</span>
+      </StyledButton>
     </StyledSection>
   )
 }
@@ -35,15 +39,8 @@ const StyledSection = styled.div`
   justify-content:flex-start;`;
 
 const StyledButton = styled.button`
-  outline:none;
-  cursor:pointer;
-  background: ${props => props.color };
-  outline:none;
-  border:none;
-  border-radius:5px;
-  padding:10px;
-  color:#FFFFFF;
-  margin:0px 10px 0px 0px;
+  margin:auto;
+  width:100%;
   `;
 
 export default ProductPageButton

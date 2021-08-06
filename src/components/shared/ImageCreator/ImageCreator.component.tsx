@@ -29,8 +29,13 @@ import useFirestoreImage from '../hooks/useFirestoreImage';
 // Components
 import Image from 'next/image';
 
+interface propType {
+  imageText:string,
+  altText:string
+}
 
-const ImageCreator:FC<any> = ({imageText, altText}:{imageText:string, altText:string}):ReactElement => {
+
+const ImageCreator:FC<propType> = ({imageText, altText}:propType):ReactElement => {
 
   let fbLink = useFirestoreImage(imageText);
 

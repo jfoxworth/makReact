@@ -25,7 +25,7 @@ import ContentBoxColumn from '../shared/contentBox/contentBoxColumn.component';
 import ContentBoxHeader from '../shared/contentBox/contentBoxHeader.component';
 
 
-const ProfileContents:FC<any> = ():ReactElement => {
+const ProfileContents:FC = ():ReactElement => {
 
   let tabItems = [ 'Account', 'Projects' ];
   let [activeTab, setActiveTab]=useState(0);

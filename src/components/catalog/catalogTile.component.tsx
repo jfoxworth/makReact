@@ -16,11 +16,18 @@ import Link from 'next/link';
 // Hooks
 import useFirestoreImage from '../shared/hooks/useFirestoreImage';
 
+// Models
+import makDesign from '../../types/makDesign';
+
 // Components
 import FaIcon from '../shared/faIcons/faIcon.component';
 
 
-const CatalogTile:FC<any> = ({design}:any):ReactElement => {
+interface propType {
+  design:makDesign
+}
+
+const CatalogTile:FC<propType> = ({design}:propType):ReactElement => {
 
   const imageString = useFirestoreImage(design.marketplace.images.filter((image:any)=>image.mainImage)[0].path)
 

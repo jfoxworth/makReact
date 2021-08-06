@@ -17,14 +17,10 @@ import { useSelector } from 'react-redux';
 
 // Components
 import HeaderTitle from '../../src/components/shared/HeaderTitle/HeaderTitle.component';
-import ContentBox from '../../src/components/shared/contentBox/contentBox.component';
-import ContentBoxContent from '../../src/components/shared/contentBox/contentBoxContent.component';
-import ContentBoxColumn from '../../src/components/shared/contentBox/contentBoxColumn.component';
-import ContentBoxHeader from '../../src/components/shared/contentBox/contentBoxHeader.component';
 import ProjectContents from '../../src/components/projects/project/projectContent.component';
 
 
-const Project:FC<any> = ():ReactElement => {
+const Project:FC = ():ReactElement => {
 
   let projects:makProject[]={} as makProject[];
   let designs:makDesign[]={} as makDesign[];
