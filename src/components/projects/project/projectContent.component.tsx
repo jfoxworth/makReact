@@ -24,6 +24,7 @@ import makVersion from '../../../../src/types/makVersion';
 // Components
 import ProjectNameDesc from './projectNameDesc.component';
 import ProjectVersionData from './projectVersionData.component';
+import ProjectSignoffs from './projectSignoffs.component';
 
 
 interface propType {
@@ -40,11 +41,19 @@ const ProjectContents:FC<propType> = ({thisProject, thisDesign}:propType):ReactE
   return(
 
     <>
-      { thisProject && <ProjectNameDesc thisProject={thisProject} thisDesign={thisDesign} /> }
-      { theseVersions.length>0 && <ProjectVersionData thisProject={thisProject} versions={theseVersions}  /> }
+      { thisProject && 
+          <ProjectNameDesc thisProject={thisProject} thisDesign={thisDesign} />
+      }
+      
+      { theseVersions.length > 0 && 
+          <ProjectVersionData thisProject={thisProject} versions={theseVersions}  /> }
+
+      { theseVersions.length > 0 && 
+          <ProjectSignoffs thisProject={thisProject}  /> }
     </>
 
   )
 }
+
 
 export default ProjectContents

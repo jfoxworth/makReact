@@ -21,7 +21,7 @@
 */
 
 
-export interface signoffReq {
+export default interface signoffReq {
 	id 					: string;			// The id of the signoff
 	dateCreated : number;			// The date that this entry was created
 	creatorId		: string;			// ID of the user that created this req

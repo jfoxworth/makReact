@@ -23,6 +23,7 @@ import { emailSignInSuccess,
 import { fetchProjectsStart } from '../projects/projects.actions';
 import { fetchVersionsStart } from "../versions/versions.actions";
 import { projectsUpdateStart } from '../projects/projects.actions';
+import { fetchSignoffsStart } from "../signoffs/signoffs.actions";
 
 
 export function* signInWithEmail({payload:{email, password}}){
@@ -54,6 +55,7 @@ export function* isUserAuthenticated(){
     )
     yield put(fetchProjectsStart());
     yield put(fetchVersionsStart());
+    yield put(fetchSignoffsStart());
   }catch(error){
     yield put(emailSignInFailure(error))
   }

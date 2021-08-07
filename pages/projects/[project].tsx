@@ -1,6 +1,6 @@
 
 // Standard React items
-import { FC, ReactElement, SyntheticEvent, useState, useEffect, useMemo } from 'react';
+import { FC, ReactElement } from 'react';
 import { useRouter } from 'next/router';
 
 
@@ -12,7 +12,8 @@ import makProject from '../../src/types/makProject';
 // Redux related items
 import { selectDesigns } from '../../src/redux/designs/designs.selectors';
 import { selectProjects } from '../../src/redux/projects/projects.selectors';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchSignoffReqsStart } from '../../src/redux/signoffReqs/signoffReqs.actions';
 
 
 // Components
@@ -21,6 +22,8 @@ import ProjectContents from '../../src/components/projects/project/projectConten
 
 
 const Project:FC = ():ReactElement => {
+
+  let dispatch=useDispatch();
 
   let projects:makProject[]={} as makProject[];
   let designs:makDesign[]={} as makDesign[];
@@ -38,11 +41,11 @@ const Project:FC = ():ReactElement => {
   projects = projectData.projects;
   designs = designData.designs;
 
-
   if (projects.length>0 && designs.length>0)
   {
     thisProject = projects.filter((tempProject:makProject)=>tempProject.id==project)[0];
     thisDesign = designs.filter((design:makDesign)=>design.id==thisProject.designId)[0];
+    dispatch(fetchSignoffReqsStart(project.toString()));
   } 
 
   return(

@@ -25,15 +25,13 @@ interface propType {
 const ImageWrapper = ({children}:propType):ReactElement => (
 
   <StyledWrapper>
-  <div>
     { children }
-    </div>
   </StyledWrapper>
 
 )
 
 const StyledWrapper = styled.div`
-position:relative;
+
 `;
 
 export default ImageWrapper

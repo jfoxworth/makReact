@@ -13,8 +13,9 @@
 // Standard React items
 import { FC, ReactElement } from 'react';
 
+// Components
 import FormInput from '../forms/form-input.component';
-
+import FaIcon from '../faIcons/faIcon.component';
 
 
 type propItems = {
@@ -27,13 +28,16 @@ type propItems = {
   id?:string
 }
 
-const ContentBoxItem:FC<propItems> = ({name, text, editable, editStatus, handleChange=()=>{}, icon, id='' }):ReactElement => (
+const ContentBoxItem:FC<propItems> = ({name, text, editable, editStatus, handleChange=()=>{}, icon='', id='' }):ReactElement => (
 
   <>
     { 
       (!editable || !editStatus) && 
       <div className="info-block">
-        <span className="label-text">{name}</span>
+        <span className="label-text">
+          { icon != '' && <FaIcon icon={icon} /> }
+          {name}
+        </span>
         <span id="account-first-name" className="label-value">{text ? text : '(No Value)'}</span>
       </div>
     }

@@ -31,8 +31,10 @@ import { createWrapper } from 'next-redux-wrapper';
    );
  
    sagaMiddleware.run(rootSaga);
+
    return store;
  };
- 
+
  export const wrapper = createWrapper(makeStore);
+
  

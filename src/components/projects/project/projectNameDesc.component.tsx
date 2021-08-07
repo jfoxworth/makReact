@@ -22,6 +22,7 @@ import makDesign from '../../../types/makDesign';
 
 // Hooks
 import useFirestoreImage from '../../shared/hooks/useFirestoreImage';
+import useTimeDate from '../../shared/hooks/useTimeDate';
 
 // Components
 import ContentBox from '../../../../src/components/shared/contentBox/contentBox.component';
@@ -30,6 +31,9 @@ import ContentBoxColumn from '../../../../src/components/shared/contentBox/conte
 import ContentBoxHeader from '../../../../src/components/shared/contentBox/contentBoxHeader.component';
 import Image from 'next/image';
 import ImageWrapper from '../../shared/ImageWrapper/ImageWrapper.component';
+
+// Styles
+import styles from '../../../../styles/styles.module.css';
 
 interface propType {
   thisProject:makProject,
@@ -64,6 +68,13 @@ const ProjectNameDesc:FC<propType> = ({thisProject, thisDesign}:propType):ReactE
           <ContentBoxContent>
             <ContentBoxColumn width={'6'}>
 
+              <ContentBox.ContentBoxItem name={'Date Project Created'} 
+                                         text={useTimeDate(thisProject.dateCreated, '')} 
+                                         icon={'Calendar'}
+                                         editable={false} 
+                                         editStatus={false} 
+                                         handleChange={()=>{}} />
+
               <ContentBox.ContentBoxItem name={'Name of the project'} 
                                          text={myName} 
                                          icon={'Cog'}
@@ -78,22 +89,15 @@ const ProjectNameDesc:FC<propType> = ({thisProject, thisDesign}:propType):ReactE
                                          editStatus={true} 
                                          handleChange={handleDescChange} />
             </ContentBoxColumn>
-            <ContentBoxColumn width={'6'}>
+            <ContentBoxColumn width={'6'} className={styles.relDiv}>
 
               <>
               { designImage && 
                 <ImageWrapper>
-                  <Image src={designImage} layout={"fill"} objectFit={"contain"}  alt="Design Image" />
+                  <Image src={designImage} layout={"fill"} className={styles.absDiv} objectFit={"contain"}  alt="Design Image" />
                 </ImageWrapper>
               }
               </>
-
-              <ContentBox.ContentBoxItem name={'Description of the project'} 
-                                         text={myDesc} 
-                                         icon={'Laptop'}
-                                         editable={true} 
-                                         editStatus={true} 
-                                         handleChange={handleDescChange} />
             </ContentBoxColumn>
           </ContentBoxContent>
         </ContentBox>

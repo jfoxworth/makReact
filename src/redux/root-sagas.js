@@ -15,6 +15,8 @@ import { userSagas } from './user/user.sagas';
 import { designsSagas } from './designs/designs.sagas';
 import { projectsSagas } from './projects/projects.sagas';
 import { versionsSagas } from './versions/versions.sagas';
+import { signoffsSagas } from './signoffs/signoffs.sagas';
+import { signoffReqsSagas } from './signoffReqs/signoffReqs.sagas';
 
 
 export default function* rootSaga(){
@@ -22,6 +24,8 @@ export default function* rootSaga(){
     call(userSagas),
     call(designsSagas),
     call(projectsSagas),
-    call(versionsSagas)
+    call(versionsSagas),
+    call(signoffsSagas),
+    call(signoffReqsSagas)
   ])
 }

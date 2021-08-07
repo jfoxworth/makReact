@@ -10,7 +10,7 @@
 *
 */
 
-export interface UserData {
+export default interface UserData {
 
 	email 				: string;
 	displayName 	: string;
@@ -20,6 +20,7 @@ export interface UserData {
 	designer 			: boolean;
 	dateCreated 	: string;
 	emailVerified : boolean;
+	id 					: string;
 	uid 					: string;
 	photoURL 			: string;
 	admin					: boolean;

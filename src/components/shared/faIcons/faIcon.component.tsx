@@ -34,6 +34,9 @@ import { FaTag,
          FaLaptop,
         FaKey, 
         FaDollarSign,
+        FaCalendar,
+        FaCalendarAlt,
+        FaCalendarDay,
         FaCopy} from 'react-icons/fa';
 
 
@@ -69,6 +72,9 @@ const FaIcon:FC<propsObj> = ({icon}):ReactElement => {
       { (icon==="Laptop") && <FaLaptop /> }
       { (icon==="Dollar") && <FaDollarSign /> }
       { (icon==="Copy") && <FaCopy /> }
+      { (icon==="Calendar") && <FaCalendar /> }
+      { (icon==="CalendarAlt") && <FaCalendarAlt /> }
+      { (icon==="CalendarDay") && <FaCalendarDay /> }
     </>
   )
 }

@@ -21,7 +21,7 @@
 */
 
 
-export interface designSignoff {
+export default interface designSignoff {
 	id 						: string;			// The id of the signoff
 	designId 			: string;			// The id of the design - deprecated
 	itemId				: string;			// ID of the design or project

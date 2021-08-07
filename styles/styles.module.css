@@ -1,0 +1,8 @@
+.absDiv{
+  position: absolute;
+  top:0
+}
+
+.relDiv{
+  position: relative;
+}

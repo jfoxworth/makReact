@@ -17,11 +17,15 @@ import userReducer from './user/user.reducer';
 import designsReducer from './designs/designs.reducer';
 import projectsReducer from './projects/projects.reducer';
 import versionsReducer from './versions/versions.reducer';
+import signoffsReducer from './signoffs/signoffs.reducer';
+import signoffReqsReducer from './signoffReqs/signoffReqs.reducer';
 
 
 export default combineReducers({
   user:userReducer,
   designs:designsReducer,
   projects:projectsReducer,
-  versions:versionsReducer
+  versions:versionsReducer,
+  signoffs:signoffsReducer,
+  signoffReqs:signoffReqsReducer
 })

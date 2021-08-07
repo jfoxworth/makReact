@@ -16,12 +16,13 @@ import styled, { css } from 'styled-components';
 
 type propItems = {
   width:string,
+  className?:string,
   children:ReactElement[] | ReactElement
 }
 
-const ContentBoxColumn = ({ width, children }:propItems):ReactElement => (
+const ContentBoxColumn = ({ width, children, className }:propItems):ReactElement => (
   
-  <StyledBoxColumn className={`column is-${width}`} style={{'display':'inline-block'}}>
+  <StyledBoxColumn className={`column is-${width} ${className}`} style={{'display':'inline-block'}}>
     {children}
   </StyledBoxColumn>
 
