@@ -19,23 +19,15 @@ import {
   fetchSignoffsFailure,
   fetchSignoffsStart
 } from './signoffs.actions';
-import { selectUser } from "../user/user.selector";
 
-import userData from '../../types/userData';
 import designSignoff from '../../types/designSignoff';
 
 
-export function* fetchSignoffsAsync(){
-
-  interface user {
-    currentUser:userData
-  }
-
-  let user:user = yield select(selectUser);
+export function* fetchSignoffsAsync(payload:any){
 
   try {
     const signoffsRef = firestore.collection('designSignoffs');
-    const signoffsSnapshot:any[] = yield signoffsRef.where("creatorId", '==', user.currentUser.id).where("deleted", '==', false).get();
+    const signoffsSnapshot:any[] = yield signoffsRef.where("itemId", '==', payload.payload).where("deleted", '==', false).get();
     const signoffsArray:designSignoff[] = yield call(convertCollectionSnapshotToMap, signoffsSnapshot)
     yield put(fetchSignoffsSuccess(signoffsArray))
   }catch(error){

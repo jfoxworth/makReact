@@ -30,7 +30,6 @@ const signoffReqsReducer = (state=INITIAL_STATE, action:any)=>{
         isFetching:true
       }
       case SignoffReqActionTypes.FETCH_SIGNOFFREQS_SUCCESS:
-        console.log(action)
         return {
           ...state,
           signoffReqs:action.payload,

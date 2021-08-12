@@ -6,3 +6,7 @@
 .relDiv{
   position: relative;
 }
+
+.roundedSmall{
+  border-radius: 25px;
+}

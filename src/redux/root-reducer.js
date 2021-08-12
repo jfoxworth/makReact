@@ -19,6 +19,7 @@ import projectsReducer from './projects/projects.reducer';
 import versionsReducer from './versions/versions.reducer';
 import signoffsReducer from './signoffs/signoffs.reducer';
 import signoffReqsReducer from './signoffReqs/signoffReqs.reducer';
+import userdataReducer from './userdata/userdata.reducer';
 
 
 export default combineReducers({
@@ -27,5 +28,6 @@ export default combineReducers({
   projects:projectsReducer,
   versions:versionsReducer,
   signoffs:signoffsReducer,
-  signoffReqs:signoffReqsReducer
+  signoffReqs:signoffReqsReducer,
+  userdata:userdataReducer
 })

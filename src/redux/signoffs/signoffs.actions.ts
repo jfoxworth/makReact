@@ -20,8 +20,9 @@ import SignoffActionTypes from './signoffs.types';
 import { firestore, convertCollectionSnapshotToMap } from '../../../firebase/firebase.utils';
 
 
-export const fetchSignoffsStart = () =>({
-  type:SignoffActionTypes.FETCH_SIGNOFFS_START
+export const fetchSignoffsStart = (itemId:string) =>({
+  type:SignoffActionTypes.FETCH_SIGNOFFS_START,
+  payload:itemId
 })
 
 export const fetchSignoffsStartAsync = () =>{
@@ -29,7 +30,7 @@ export const fetchSignoffsStartAsync = () =>{
   return (dispatch:any) => {
 
     const signoffsRef = firestore.collection('signoffs');
-    dispatch(fetchSignoffsStart())
+//    dispatch(fetchSignoffsStart())
 
     signoffsRef.get().then(snapshot =>{
       const signoffsArray = convertCollectionSnapshotToMap(snapshot);

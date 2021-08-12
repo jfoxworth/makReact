@@ -49,9 +49,10 @@ const userReducer = (state=INITIAL_STATE, action:any)=>{
         return {
           ...state,
       };
+
       case UserActionTypes.SIGN_UP_FAILURE:
       default:
-    return state;
+      return state;
   }
 }
 

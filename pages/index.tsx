@@ -9,7 +9,7 @@ const Home:FC = ():ReactElement => {
 
   const router = useRouter();
   useEffect(()=>{
-    router.push('/catalog');
+    router.push('/Catalog');
   }, [router])
 
   return(

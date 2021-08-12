@@ -67,3 +67,4 @@ export const signUpFailure = (error:any) =>({
   type: UserActionTypes.SIGN_UP_FAILURE,
   payload:error
 })
+

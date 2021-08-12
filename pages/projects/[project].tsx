@@ -14,11 +14,12 @@ import { selectDesigns } from '../../src/redux/designs/designs.selectors';
 import { selectProjects } from '../../src/redux/projects/projects.selectors';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchSignoffReqsStart } from '../../src/redux/signoffReqs/signoffReqs.actions';
+import { fetchSignoffsStart } from '../../src/redux/signoffs/signoffs.actions';
 
 
 // Components
-import HeaderTitle from '../../src/components/shared/HeaderTitle/HeaderTitle.component';
-import ProjectContents from '../../src/components/projects/project/projectContent.component';
+import HeaderTitle from '../../src/components/HeaderTitle';
+import ProjectContents from './ProjectContent';
 
 
 const Project:FC = ():ReactElement => {
@@ -33,7 +34,7 @@ const Project:FC = ():ReactElement => {
 
   // Pull the product ID from the URL
   const router = useRouter()
-  const { project } = router.query;
+  const { Project } = router.query;
 
   let projectData = useSelector(selectProjects);
   let designData = useSelector(selectDesigns);
@@ -43,9 +44,10 @@ const Project:FC = ():ReactElement => {
 
   if (projects.length>0 && designs.length>0)
   {
-    thisProject = projects.filter((tempProject:makProject)=>tempProject.id==project)[0];
+    thisProject = projects.filter((tempProject:makProject)=>tempProject.id==Project)[0];
     thisDesign = designs.filter((design:makDesign)=>design.id==thisProject.designId)[0];
-    dispatch(fetchSignoffReqsStart(project.toString()));
+    dispatch(fetchSignoffReqsStart(Project.toString()));
+    dispatch(fetchSignoffsStart(Project.toString()));
   } 
 
   return(
