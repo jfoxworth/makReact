@@ -20,6 +20,7 @@ import versionsReducer from './versions/versions.reducer';
 import signoffsReducer from './signoffs/signoffs.reducer';
 import signoffReqsReducer from './signoffReqs/signoffReqs.reducer';
 import userdataReducer from './userdata/userdata.reducer';
+import ordersReducer from './orders/orders.reducer';
 
 
 export default combineReducers({
@@ -29,5 +30,6 @@ export default combineReducers({
   versions:versionsReducer,
   signoffs:signoffsReducer,
   signoffReqs:signoffReqsReducer,
-  userdata:userdataReducer
+  userdata:userdataReducer,
+  orders:ordersReducer,
 })

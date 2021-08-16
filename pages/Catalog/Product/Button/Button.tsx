@@ -16,12 +16,17 @@ import styled from 'styled-components';
 // Components
 import FaIcon from '../../../../src/components/FaIcon/FaIcon';
 
+interface propTypes {
+  icon:string,
+  text:string,
+  clickHandler: Function
+}
 
-const ProductPageButton = ({icon, text, color}:{icon:string, text:string, color:string}):ReactElement => {
+const ProductPageButton = ({icon, text, clickHandler}:propTypes):ReactElement => {
 
   return(
     <StyledSection >
-      <StyledButton className="button is-info">
+      <StyledButton className="button is-info" onClick={()=>clickHandler()}>
         <span className="icon">
           <FaIcon icon={icon} />
         </span>

@@ -11,14 +11,19 @@
 
 
 // Standard React items
-import React, { FC, ReactElement, useState } from 'react';
+import React, { FC, ReactElement } from 'react';
 import styled, { css } from 'styled-components';
+
+// Redux Items
+import { useDispatch } from 'react-redux';
+import { orderUpdateStart } from '../../../../src/redux/orders/orders.actions';
 
 // Hooks
 import useTimeDate from '../../../../src/components/Hooks/useTimeDate';
 
 // Models
 import makVersion from '../../../../src/types/makVersion';
+import makOrder from '../../../../src/types/makOrder';
 
 // Components
 import FaIcon from '../../../../src/components/FaIcon';
@@ -26,37 +31,55 @@ import Link from 'next/link';
 
 
 type propItems={
+  thisOrder:makOrder,
   thisVersion:makVersion,
   selectedVersionId:string,
   handleVersionClick?:Function
 }
 
 
-const ProjectVersionListItem:FC<propItems> = ({thisVersion, selectedVersionId, handleVersionClick=()=>{}}:propItems):ReactElement => {
+const ProjectVersionListItem:FC<propItems> = ({thisOrder, thisVersion, selectedVersionId, handleVersionClick=()=>{}}:propItems):ReactElement => {
+
+  const dispatch = useDispatch();
 
   const thisTimeDate = useTimeDate(thisVersion.dateCreated, 'TMDY');
+
+  const addToCart = (thisOrder:makOrder, thisVersion:makVersion) => {
+    let newItems = thisOrder.items;
+    newItems.push(thisVersion);
+    dispatch(orderUpdateStart({...thisOrder, items:newItems}));
+  }
 
   return ( 
     <StyledLine isCurrent={selectedVersionId == thisVersion.id}>
       <StyledDate onClick={()=>handleVersionClick(thisVersion.id)}>{thisTimeDate}</StyledDate>
       <StyledName onClick={()=>handleVersionClick(thisVersion.id)}>{thisVersion.name}</StyledName>
       
-      <StyledButton className={'has-tooltip-info has-tooltip-left'} 
+      <StyledButton className={'has-tooltip-info has-tooltip-top'} 
                     data-tooltip="Open invoice" >
         <Link href={`/Invoice/${thisVersion.id}`} passHref>
           <StyledAnchor>
             <a href={`/Invoice/${thisVersion.id}`}>
-            <FaIcon icon={'Dollar'} />
+              <FaIcon icon={'Dollar'} />
             </a>
           </StyledAnchor>
         </Link>
       </StyledButton>
       
-      <StyledButton className={'has-tooltip-info has-tooltip-right'} 
+      <StyledButton className={'has-tooltip-info has-tooltip-top'} 
                     data-tooltip="Create new version from this one" >
         <FaIcon icon={'Copy'} />
       </StyledButton>
     
+      <StyledButton className={'has-tooltip-info has-tooltip-top'} 
+                    data-tooltip="Add this version to cart" >
+        <StyledAnchor>
+          <a onClick={()=>addToCart(thisOrder, thisVersion)}>
+            <FaIcon icon={'CartPlus'} />
+          </a>
+        </StyledAnchor>
+      </StyledButton>
+
     </StyledLine>
 
   )
@@ -85,7 +108,7 @@ const StyledLine = styled.div<{isCurrent:boolean}>`
 
 const StyledDate = styled.div`
   display:inline-flex;
-  width:45%;
+  width:40%;
   padding:0px 0px 0px 1em;
 `;
 
@@ -96,7 +119,7 @@ a:visited { color: inherit; }
 
 const StyledName = styled.div`
   display:inline-flex;
-  width:45%;
+  width:40%;
 `;
 
 const StyledButton = styled.div`
@@ -104,6 +127,7 @@ const StyledButton = styled.div`
   width:5%;
   cursor:pointer;
   text-align:center;
+  margin:auto;
 `;
 
 

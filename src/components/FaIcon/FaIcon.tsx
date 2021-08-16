@@ -32,14 +32,24 @@ import { FaTag,
          FaBook,
          FaBriefcase,
          FaLaptop,
-        FaKey, 
-        FaDollarSign,
-        FaCalendar,
-        FaCalendarAlt,
-        FaCalendarDay,
-        FaCross,
-        FaTrash,
-        FaCopy} from 'react-icons/fa';
+         FaKey, 
+         FaDollarSign,
+         FaCalendar,
+         FaCalendarAlt,
+         FaCalendarDay,
+         FaCross,
+         FaTrash,
+         FaCartPlus,
+         FaTruck,
+         FaTruckLoading,
+         FaTruckMoving,
+         FaPlus,
+         FaMinus,
+         FaPlusCircle,
+         FaMinusCircle,
+         FaThLarge,
+         FaThList,
+         FaCopy} from 'react-icons/fa';
 
 
 type propsObj = {
@@ -78,7 +88,17 @@ const FaIcon:FC<propsObj> = ({icon}):ReactElement => {
       { (icon==="CalendarAlt") && <FaCalendarAlt /> }
       { (icon==="CalendarDay") && <FaCalendarDay /> }
       { (icon==="Cross") && <FaCross /> }
+      { (icon==="CartPlus") && <FaCartPlus /> }
+      { (icon==="Truck") && <FaTruck /> }
+      { (icon==="TruckLoading") && <FaTruckLoading /> }
+      { (icon==="TruckMoving") && <FaTruckMoving /> }
       { (icon==="Trash") && <FaTrash /> }
+      { (icon==="Plus") && <FaPlus /> }
+      { (icon==="PlusCircle") && <FaPlusCircle /> }
+      { (icon==="Minus") && <FaMinus /> }
+      { (icon==="MinusCircle") && <FaMinusCircle /> }
+      { (icon==="ThList") && <FaThList /> }
+      { (icon==="ThLarge") && <FaThLarge /> }
     </>
   )
 }

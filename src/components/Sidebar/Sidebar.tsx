@@ -20,10 +20,15 @@ import Image from 'next/image';
 
 // Redux related items
 import { signOutStart } from '../../redux/user/user.actions';
+import { useSelector } from 'react-redux';
+import { selectOrders } from '../../redux/orders/orders.selectors';
 
 // The imported components
 import SidebarMenuItem from './SidebarMenuItem/SidebarMenuItem';
 import SidebarUser from './SidebarUser/SidebarUser';
+
+// Models
+import makOrder from '../../types/makOrder';
 
 // Static objects to populate the side bar
 const menuOptions = [
@@ -33,41 +38,71 @@ const menuOptions = [
         icon : 'UserAstronaut',
         loginNeeded : true,
 				anonNeeded : false,
-    },
+				badge:false,
+				badgeNum:0,
+			},
     {
         title : 'Catalog',
         link : '/Catalog',
         icon : 'Tag',
         loginNeeded : false,
 				anonNeeded : false,
-    },
+				badge:false,
+				badgeNum:0,
+			},
     {
         title : 'My Projects',
         link : '/Projects',
         icon : 'List',
         loginNeeded : true,
 				anonNeeded : false,
-    },
+				badge:false,
+				badgeNum:0,
+			},
     {
         title : 'Design Studio',
         link : '/DesignStudio',
         icon : 'Cogs',
         loginNeeded : false,
 				anonNeeded : false,
-    },
+				badge:false,
+				badgeNum:0,
+			},
+    {
+			title : 'Cart',
+			link : '/Cart',
+			icon : 'CartPlus',
+			loginNeeded : true,
+			anonNeeded : false,
+			badge:true,
+			badgeNum:0,
+		},
+    {
+			title : 'Orders',
+			link : '/Orders',
+			icon : 'TruckMoving',
+			loginNeeded : true,
+			anonNeeded : false,
+			badge:false,
+			badgeNum:0,
+		},
     {
         title : 'Support',
         link : '/Support',
         icon : 'InfoCircle',
         loginNeeded : false,
 				anonNeeded : false,
-    },
+				badge:false,
+				badgeNum:0,
+			},
     {
 			title : 'Login / Register',
 			link : '/LoginRegister',
 			icon : 'UserAstronaut',
 			loginNeeded : false,
 			anonNeeded : true,
+			badge:false,
+			badgeNum:0,
 		}
 ];
 
@@ -82,6 +117,13 @@ const Sidebar:FC<propsObj> = ({currentUser}):ReactElement => {
     const handleSignOut = ()=>{
         signOutStart();
     }
+
+		const orders = useSelector(selectOrders);
+
+		if (orders.orders.length>0) {
+			let cart =  orders.orders.filter((order:makOrder)=>order.isCart)[0];
+			menuOptions[4].badgeNum = cart.items.length;
+		}
 
     return (
 
@@ -104,7 +146,9 @@ const Sidebar:FC<propsObj> = ({currentUser}):ReactElement => {
 								<SidebarMenuItem title={menuItem.title} 
 																 link={menuItem.link} 
 																 icon={menuItem.icon}
-																 key={'sidebarMenu'+index} />
+																 key={'sidebarMenu'+index} 
+																 badge={menuItem.badge}
+																 badgeNum={menuItem.badgeNum }/>
 							))
 						}
 					</ul>

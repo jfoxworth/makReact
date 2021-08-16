@@ -18,6 +18,8 @@ import VersionsActionTypes from './versions.types';
 
 // Firestore items
 import { firestore, convertCollectionSnapshotToMap } from '../../../firebase/firebase.utils';
+import makProject from '../../types/makProject';
+import UserData from '../../types/userData';
 
 
 export const fetchVersionsStart = () =>({
@@ -41,10 +43,49 @@ export const fetchVersionsStartAsync = () =>{
 export const fetchVersionsSuccess = (versionsArray:makVersion[]) =>({
   type:VersionsActionTypes.FETCH_VERSIONS_SUCCESS,
   payload:versionsArray
-})
+});
 
 
 export const fetchVersionsFailure = (errorMessage:any) =>({
   type:VersionsActionTypes.FETCH_VERSIONS_FAILURE,
+  payload:errorMessage
+});
+
+
+
+
+
+export const versionUpdateStart = (version:makVersion) =>({
+  type:VersionsActionTypes.VERSION_UPDATE_START,
+  payload:version
+})
+
+
+
+export const versionUpdateSuccess = () =>({
+  type:VersionsActionTypes.VERSION_UPDATE_SUCCESS
+})
+
+
+export const versionUpdateFailure = (errorMessage:any) =>({
+  type:VersionsActionTypes.VERSION_UPDATE_FAILURE,
+  payload:errorMessage
+})
+
+
+
+
+export const createVersionStart = (payload:{project:makProject, user:UserData, measurements:[]}) =>({
+  type:VersionsActionTypes.VERSION_CREATE_START,
+  payload:{...payload}
+})
+
+export const createVersionSuccess = () =>({
+  type:VersionsActionTypes.VERSION_CREATE_SUCCESS
+})
+
+
+export const createVersionFailure = (errorMessage:any) =>({
+  type:VersionsActionTypes.VERSION_CREATE_FAILURE,
   payload:errorMessage
 })

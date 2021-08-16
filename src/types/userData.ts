@@ -11,6 +11,7 @@
 */
 
 export default interface UserData {
+  currentUser: any;
 
 	email 				: string;
 	displayName 	: string;

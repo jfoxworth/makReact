@@ -14,7 +14,10 @@
 *
 */
 
-interface makVersion {
+import makProject from "./makProject"
+import UserData from "./userData"
+
+export default interface makVersion {
 	id 						: string;		// UID for the version
 	dateCreated 	: number;		// Date that this project was created
 	creatorId			: string;		// Id of the user that created if
@@ -36,4 +39,26 @@ interface makVersion {
 
 }
 
-export default makVersion
+export const makeNewVersion = (project:makProject, user:UserData) => {
+
+	return {
+		id: '',
+		dateCreated: Date.now(),
+		creatorId: user.id,
+		creatorName: user.displayName,
+		description: '',
+		designId: project.designId,
+		initialOpen:true,
+		name:`New Version for ${project.name}`,
+		projectId: project.id,
+		version: 1,
+		measurements:[],
+		values:[],
+		price:0,
+		tax:0,
+		totalCost:0,
+		deposit:0,
+		uploadedImage:'',
+		deleted: false
+	}
+}

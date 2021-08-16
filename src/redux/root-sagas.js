@@ -18,6 +18,7 @@ import { versionsSagas } from './versions/versions.sagas';
 import { signoffsSagas } from './signoffs/signoffs.sagas';
 import { signoffReqsSagas } from './signoffReqs/signoffReqs.sagas';
 import { userdataSagas } from './userdata/userdata.sagas';
+import { ordersSagas } from './orders/orders.sagas';
 
 
 export default function* rootSaga(){
@@ -28,6 +29,7 @@ export default function* rootSaga(){
     call(versionsSagas),
     call(signoffsSagas),
     call(signoffReqsSagas),
-    call(userdataSagas)
+    call(userdataSagas),
+    call(ordersSagas)
   ])
 }

@@ -42,8 +42,6 @@ export const fetchUserdataStartAsync = () =>{
 }
 
 export const fetchUserdataSuccess = (userdataArray:userData[]) => {
-  console.log('here')
-  console.log(userdataArray)  
   return ({
   type:UserdataActionTypes.FETCH_USERDATA_SUCCESS,
   payload:userdataArray

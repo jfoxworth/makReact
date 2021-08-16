@@ -22,9 +22,11 @@ import { emailSignInSuccess,
          signUpFailure } from "./user.actions";
 import { fetchProjectsStart } from '../projects/projects.actions';
 import { fetchVersionsStart } from "../versions/versions.actions";
+import { fetchOrdersStart } from "../orders/orders.actions";
 
 
 export function* signInWithEmail({payload:{email, password}}){
+console.log('Should be signing in');
   try{
     const { user } = yield auth.signInWithEmailAndPassword(email, password);
     const userRef = yield call(createUserProfileDocument, user);
@@ -53,6 +55,7 @@ export function* isUserAuthenticated(){
     )
     yield put(fetchProjectsStart());
     yield put(fetchVersionsStart());
+    yield put(fetchOrdersStart());
   }catch(error){
     yield put(emailSignInFailure(error))
   }

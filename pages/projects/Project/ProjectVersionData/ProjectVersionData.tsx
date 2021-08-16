@@ -15,6 +15,7 @@ import { FC, JSXElementConstructor, ReactElement, useState } from 'react';
 // Models
 import makProject from '../../../../src/types/makProject';
 import makVersion from '../../../../src/types/makVersion';
+import makOrder from '../../../../src/types/makOrder';
 
 // Components
 import ProjectVersionListItem from '../ProjectVersionListItem/ProjectVersionListItem';
@@ -26,11 +27,12 @@ import ProjectVersionMeasurements from '../ProjectVersionMeasurements';
 
 
 type propItems = {
+  thisOrder:makOrder
   thisProject:makProject,
   versions:makVersion[]
 }
 
-const ProjectVersionData:FC<propItems> = ({thisProject, versions}:propItems):ReactElement => {
+const ProjectVersionData:FC<propItems> = ({thisOrder, thisProject, versions}:propItems):ReactElement => {
 
   const [vName, setVName]=useState(versions[0]['name']);
   const [vDesc, setVDesc]=useState(versions[0]['description']);
@@ -62,7 +64,8 @@ const ProjectVersionData:FC<propItems> = ({thisProject, versions}:propItems):Rea
 
             <>
             { versions.map((tV:makVersion, index:number)=>(
-                <ProjectVersionListItem thisVersion={tV} 
+                <ProjectVersionListItem thisOrder={thisOrder}
+                                        thisVersion={tV} 
                                         selectedVersionId={selectedVersion.id}
                                         key={`Version${index}`}
                                         handleVersionClick={handleVersionClick} />

@@ -52,7 +52,9 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 // each document within that snapshot
 export const convertCollectionSnapshotToMap = (collection)=>{
   const transformedCollection = collection.docs.map(doc=>{
-    return doc.data();
+    let tempData=doc.data();
+    tempData.id=doc.id;
+    return tempData;
   });
   return transformedCollection
 }

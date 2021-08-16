@@ -14,7 +14,10 @@
 *
 */
 
-interface makProject {
+import makDesign from "./makDesign"
+import UserData from "./userData"
+
+export default interface makProject {
 	id						: string; 		// ID of project
 	creatorId 		: string;			// Id of the user that created the project
 	creatorName 	: string; 		// Name of the user that created the project 
@@ -29,4 +32,20 @@ interface makProject {
 	deleted 			: boolean;		// If true, then the item has been deleted
 }
 
-export default makProject
+
+export const makeNewProject = (design:makDesign, user:UserData) => {
+
+	return {
+		id: '',
+		creatorId: user.id,
+		creatorName: user.displayName,
+		dateCreated: Date.now(),
+		description: '',
+		designId: design.id,
+		initialOpen:true,
+		name:`New Project from ${design.title}`,
+		status: 0,
+		versions: 1,
+		deleted: false
+	}
+}

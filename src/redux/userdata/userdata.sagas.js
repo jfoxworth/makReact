@@ -24,8 +24,6 @@ import {
 import { selectUserdata } from "./userdata.selectors";
 
 export function* fetchUserdataAsync(payload){
-  console.log('Fetching user data');
-  console.log(payload)
 
   try {
     const userdataRef = firestore.collection('users');
@@ -34,7 +32,6 @@ export function* fetchUserdataAsync(payload){
     let currentUserdata = yield select(selectUserdata);
     let currentUserdataArray = currentUserdata.userdata;
     currentUserdataArray.push(userdataArray[0]);
-    console.log(currentUserdataArray)
 
 
     yield put(fetchUserdataSuccess(currentUserdataArray));

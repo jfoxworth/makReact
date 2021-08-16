@@ -27,7 +27,7 @@ import ContentBoxHeader from '../../../src/components/ContentBox/ContentBoxHeade
 
 const ProfileContents:FC = ():ReactElement => {
 
-  let tabItems = [ 'Account', 'Projects' ];
+  let tabItems = [ 'Account', 'Orders' ];
   let [activeTab, setActiveTab]=useState(0);
   let [contentEditStatus, setContentEditStatus]=useState(false);
 
@@ -57,7 +57,7 @@ const ProfileContents:FC = ():ReactElement => {
     <>
       <Tabs tabArray={tabItems} activeTab={activeTab} clickHandler={ clickHandler } />
 
-      { user.currentUser &&
+      { user.currentUser && activeTab==0 &&
 
         <div id="account-main" className="columns is-account-grid is-multiline">
 
@@ -81,6 +81,16 @@ const ProfileContents:FC = ():ReactElement => {
             </ContentBox>
           </div>
 
+        </div>
+      }
+
+      { user.currentUser && activeTab==1 &&
+
+        <div className="columns is-account-grid is-multiline">
+
+          <div className="column is-5">
+            <ProfileUser />
+          </div>
         </div>
       }
 

@@ -12,6 +12,8 @@
 
 // Models
 import makProject from '../../types/makProject';
+import makDesign from '../../types/makDesign';
+import UserData from '../../types/userData';
 
 // React Items
 import ProjectActionTypes from './projects.types';
@@ -67,5 +69,23 @@ export const projectsUpdateSuccess = () =>({
 
 export const projectsUpdateFailure = (errorMessage:any) =>({
   type:ProjectActionTypes.PROJECTS_UPDATE_FAILURE,
+  payload:errorMessage
+})
+
+
+
+
+export const createProjectStart = (payload:{design:makDesign, user:UserData}) =>({
+  type:ProjectActionTypes.PROJECT_CREATE_START,
+  payload:{...payload}
+})
+
+export const createProjectSuccess = () =>({
+  type:ProjectActionTypes.PROJECT_CREATE_SUCCESS
+})
+
+
+export const createProjectFailure = (errorMessage:any) =>({
+  type:ProjectActionTypes.PROJECT_CREATE_FAILURE,
   payload:errorMessage
 })

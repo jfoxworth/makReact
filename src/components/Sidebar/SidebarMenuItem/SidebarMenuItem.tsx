@@ -17,10 +17,12 @@ import FaIcon from '../../FaIcon/FaIcon';
 type propsObj = {
   title:string,
   link:string,
-  icon:string
+  icon:string,
+  badge:boolean,
+  badgeNum:number
 }
 
-const SidebarMenuItem:FC<propsObj> = ({title, link, icon}):ReactElement => {
+const SidebarMenuItem:FC<propsObj> = ({title, link, icon, badge, badgeNum}):ReactElement => {
 
   return (
 
@@ -29,8 +31,12 @@ const SidebarMenuItem:FC<propsObj> = ({title, link, icon}):ReactElement => {
         <a>
           <span style={{display:"contents"}}>
             {title}
+            {
+              badge && <span>{badgeNum}</span>
+            }
             <FaIcon icon={icon} />
           </span>
+
         </a>
       </Link>
     </li>

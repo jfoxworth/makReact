@@ -9,4 +9,4 @@
 *
 */
 
-export { default } from './ProjectContent';
+export { default } from './OrderItem';

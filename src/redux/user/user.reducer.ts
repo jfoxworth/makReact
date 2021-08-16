@@ -23,6 +23,12 @@ const INITIAL_STATE = {
 const userReducer = (state=INITIAL_STATE, action:any)=>{
 
   switch (action.type) {
+    case UserActionTypes.EMAIL_SIGN_IN_START:
+      return {
+        ...state,
+        payload:action.payload,
+        error:null
+      }
     case UserActionTypes.EMAIL_SIGN_IN_SUCCESS:
       return {
         ...state,

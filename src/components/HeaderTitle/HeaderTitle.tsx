@@ -16,15 +16,35 @@
 
 // Standard React items
 import { FC, ReactElement } from 'react';
+import styled from 'styled-components';
+
+interface propTypes {
+  text:string;
+  children?:ReactElement
+}
+
+const HeaderTitle:FC<propTypes> = ({text, children}):ReactElement => {
+
+  return (
+    <div className="account-title" style={{borderBottom:'1px solid #d6d6d6', paddingBottom:'10px', marginBottom:'10px'}}>
+      <h2>
+        <StyledText>{text.toUpperCase()}</StyledText>
+        <StyledIcon>{children}</StyledIcon>
+      </h2>
+    </div>
+  )
+}
 
 
-const HeaderTitle:FC<{text:string}> = ({text}):ReactElement => (
+const StyledText = styled.div`
+  display:inline;
+`;
 
-  <div className="account-title" style={{borderBottom:'1px solid #d6d6d6', paddingBottom:'10px', marginBottom:'10px'}}>
-    <h2>{text.toUpperCase()}</h2>
-  </div>
-
-)
+const StyledIcon = styled.div`
+  padding:0px 0px 0px 1em;
+  display:inline;
+  top:4px;
+`;
 
 
 export default HeaderTitle

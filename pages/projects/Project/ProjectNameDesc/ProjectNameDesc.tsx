@@ -30,7 +30,6 @@ import ContentBoxContent from '../../../../src/components/ContentBox/ContentBoxC
 import ContentBoxColumn from '../../../../src/components/ContentBox/ContentBoxColumn/ContentBoxColumn';
 import ContentBoxHeader from '../../../../src/components/ContentBox/ContentBoxHeader/ContentBoxHeader';
 import Image from 'next/image';
-import ImageWrapper from '../../../../src/components/ImageWrapper/ImageWrapper';
 
 // Styles
 import styles from '../../../../styles/styles.module.css';

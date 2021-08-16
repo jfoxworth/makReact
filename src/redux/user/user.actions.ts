@@ -32,7 +32,7 @@ export const emailSignInSuccess = (user:any) =>({
 });
 
 export const emailSignInFailure = (error:any) =>({
-  type:UserActionTypes.EMAIL_SIGN_IN_START,
+  type:UserActionTypes.EMAIL_SIGN_IN_FAILURE,
   payload:error
 });
 

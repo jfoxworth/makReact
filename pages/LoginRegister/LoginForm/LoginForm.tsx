@@ -18,8 +18,8 @@ import Link from 'next/link';
 import { emailSignInStart, signOutStart } from '../../../src/redux/user/user.actions';
 
 // Components
-import FormInput from '../../../src/components/Forms/FormInput/FormInput';
-import FormButton from '../../../src/components/Forms/FormCustomButton/CustomButton';
+import FormInput from '../../../src/components/Forms/FormInput';
+import FormButton from '../../../src/components/Forms/FormCustomButton';
 
 
 type propObj = {
@@ -44,7 +44,6 @@ const LoginForm = ({emailSignInStart, signOutStart}:propObj) => {
   const handleChange = (event:any) =>{
     const {value, name} = event.target;
     setCredentials({...userCredentials, [name]:value});
-    console.log(userCredentials)
   }
 
   return(
@@ -64,6 +63,7 @@ const LoginForm = ({emailSignInStart, signOutStart}:propObj) => {
                        label={"Email"}
                        placeholder={"Email Address"}
                        type={"email"}
+                       value={userCredentials.email}
                        icon={"Envelope"}
                        error={false} />
 
@@ -72,6 +72,7 @@ const LoginForm = ({emailSignInStart, signOutStart}:propObj) => {
                        label={"Password"}
                        placeholder={"Password"}
                        type={"password"}
+                       value={userCredentials.password}
                        icon={"Key"}
                        error={false} />
 

@@ -15,8 +15,12 @@ import VersionActionTypes from "./versions.types";
 import { firestore, convertCollectionSnapshotToMap } from '../../../firebase/firebase.utils';
 import {
   fetchVersionsSuccess,
-  fetchVersionsFailure
+  fetchVersionsFailure,
+  versionUpdateStart,
+  versionUpdateSuccess,
+  versionUpdateFailure
 } from './versions.actions';
+
 
 export function* fetchVersionsAsync(){
   try {
@@ -34,6 +38,63 @@ export function* fetchVersionsStart(){
     VersionActionTypes.FETCH_VERSIONS_START,
     fetchVersionsAsync)
 }
+
+
+
+
+
+
+export function* createNewVersionSagas(){
+  yield takeLatest(
+    VersionActionTypes.VERSION_CREATE_START,
+    createNewVersionAsync)
+}
+
+
+// This function creates a version
+export const createNewVersionAsync = async (payload) => {
+
+  const versionsRef = firestore.collection(`versions`);
+
+  let newVersion = makeNewVersion(payload.payload.version, payload.payload.user);
+
+  try {
+    await versionsRef.add(newVersion);
+    fetchVersionsAsync();
+  } catch (error) {
+    console.log('error creating version', error.message);
+  }
+  
+  return versionsRef;
+
+};
+
+
+
+
+
+
+export function* versionsUpdateAsync(payload){
+
+  let thisVersion=payload.payload
+  try {
+    const versionsRef = firestore.collection('versions');
+		versionsRef.doc( thisVersion.id ).update( thisVersion );
+    yield put(versionsUpdateSuccess());
+    yield put(fetchVersionsStart());
+  }catch(error){
+    yield put(versionsUpdateFailure(error.message))
+  }
+}
+
+export function* versionsUpdateStart(thisVersion){
+  yield takeLatest(
+    VersionActionTypes.VERSIONS_UPDATE_START,
+    versionsUpdateAsync)
+}
+
+
+
 
 
 
