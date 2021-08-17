@@ -75,10 +75,13 @@ export const versionUpdateFailure = (errorMessage:any) =>({
 
 
 
-export const createVersionStart = (payload:{project:makProject, user:UserData, measurements:[]}) =>({
+export const createVersionStart = (project:makProject, user:UserData, measurements:[]) =>{
+  console.log('In create version action')
+  return {
   type:VersionsActionTypes.VERSION_CREATE_START,
-  payload:{...payload}
-})
+  payload:{project, user, measurements}
+  }
+}
 
 export const createVersionSuccess = () =>({
   type:VersionsActionTypes.VERSION_CREATE_SUCCESS

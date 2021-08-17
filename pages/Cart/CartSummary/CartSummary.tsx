@@ -1,10 +1,13 @@
 
 // Standard React items
-import { FC, ReactElement} from 'react';
+import React, { FC, ReactElement, useEffect } from 'react';
 import styled from 'styled-components';
 
 // Models
 import makOrder from '../../../src/types/makOrder';
+
+// Functions
+import formatMoney from '../../../src/functions/formatMoney';
 
 
 interface CartProps {
@@ -12,6 +15,14 @@ interface CartProps {
 }
 
 const CartSummary:FC<CartProps> = ({order}):ReactElement => {
+
+  let totalCost = 0;
+  order.items.forEach(item=>{
+    totalCost=totalCost+item.price;
+  });
+  let taxes = totalCost * 0.0825;
+  let shipping =  order.items.length * 50;
+  let customerCost = totalCost + taxes + shipping;
 
   return(
 
@@ -21,29 +32,29 @@ const CartSummary:FC<CartProps> = ({order}):ReactElement => {
 
         <div className="summary-header">
             <i data-feather="shopping-cart"></i>
-            <div><var id="cart-page-count">5</var> <span>Item(s) in Cart</span></div>
+            <div><var id="cart-page-count">{order.items.length}</var> <span>Item(s) in Cart</span></div>
         </div>
 
         <div className="cart-summary-list">
 
           <div className="summary-item">
               <span>Subtotal</span>
-              <span id="cart-summary-subtotal" className="amount">0.00</span>
+              <span id="cart-summary-subtotal" className="amount">{formatMoney(totalCost)}</span>
           </div>
 
           <div className="summary-item">
               <span>Taxes</span>
-              <span id="cart-summary-taxes" className="amount">0.00</span>
+              <span id="cart-summary-taxes" className="amount">{formatMoney(taxes)}</span>
           </div>
 
           <div className="summary-item">
               <span>Shipping</span>
-              <span id="cart-summary-shipping" className="amount">0.00</span>
+              <span id="cart-summary-shipping" className="amount">{formatMoney(shipping)}</span>
           </div>
 
           <div className="summary-item is-bold">
               <span>Total</span>
-              <span id="cart-summary-total" className="amount">0.00</span>
+              <span id="cart-summary-total" className="amount">{formatMoney(customerCost)}</span>
           </div>
 
         </div>
@@ -69,4 +80,4 @@ const StyledNoCart = styled.div`
 `;
 
 
-export default CartSummary
+export default React.memo(CartSummary)

@@ -58,22 +58,30 @@ const Project:FC = ():ReactElement => {
   if (projects.length>0 && designs.length>0 && orders.length)
   {
     thisProject = projects.filter((tempProject:makProject)=>tempProject.id==Project)[0];
-    thisDesign = designs.filter((design:makDesign)=>design.id==thisProject.designId)[0];
-    dispatch(fetchSignoffReqsStart(Project.toString()));
-    dispatch(fetchSignoffsStart(Project.toString()));
-    theseVersions = versionData.versions.filter((thisVer:makVersion)=>(thisVer.projectId==thisProject.id)).flat();
-    myCart = orders.filter((order:makOrder)=>order.isCart)[0];
+    if (thisProject)
+    {
+      thisDesign = designs.filter((design:makDesign)=>design.id==thisProject.designId)[0];
+      dispatch(fetchSignoffReqsStart(Project.toString()));
+      dispatch(fetchSignoffsStart(Project.toString()));
+      theseVersions = versionData.versions.filter((thisVer:makVersion)=>(thisVer.projectId==thisProject.id)).flat();
+      myCart = orders.filter((order:makOrder)=>order.isCart)[0];
+    }
   } 
 
   return(
     
     <>
-      { thisProject.id &&
+      {
+        !thisProject &&
+        <HeaderTitle text={`PROJECT - No Project Found`} />
+      }
+
+      { thisProject &&
         <HeaderTitle text={`PROJECT - ${thisProject.name}`} />
       }
 
       { thisProject && thisDesign.marketplace &&
-        <ProjectNameDesc thisProject={thisProject} thisDesign={thisDesign} />
+        <ProjectNameDesc thisProject={thisProject} thisDesign={thisDesign} theseVersions={theseVersions} />
       }
       
       { theseVersions.length > 0 && theseVersions &&

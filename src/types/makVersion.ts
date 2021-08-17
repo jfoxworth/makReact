@@ -39,7 +39,7 @@ export default interface makVersion {
 
 }
 
-export const makeNewVersion = (project:makProject, user:UserData) => {
+export const makeNewVersion = (project:makProject, user:UserData, measurements:[]) => {
 
 	return {
 		id: '',
@@ -52,7 +52,7 @@ export const makeNewVersion = (project:makProject, user:UserData) => {
 		name:`New Version for ${project.name}`,
 		projectId: project.id,
 		version: 1,
-		measurements:[],
+		measurements:measurements,
 		values:[],
 		price:0,
 		tax:0,

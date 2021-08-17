@@ -49,6 +49,12 @@ import { FaTag,
          FaMinusCircle,
          FaThLarge,
          FaThList,
+         FaShoppingCart,
+         FaPalette,
+         FaPencilRuler,
+         FaCreditCard,
+         FaClipboardCheck,
+         FaLifeRing,
          FaCopy} from 'react-icons/fa';
 
 
@@ -99,6 +105,12 @@ const FaIcon:FC<propsObj> = ({icon}):ReactElement => {
       { (icon==="MinusCircle") && <FaMinusCircle /> }
       { (icon==="ThList") && <FaThList /> }
       { (icon==="ThLarge") && <FaThLarge /> }
+      { (icon==="ShoppingCart") && <FaShoppingCart />}
+      { (icon==="Palette") && <FaPalette/>}
+      { (icon==="PencilRuler") && <FaPencilRuler/>}
+      { (icon==="CreditCard") && <FaCreditCard/>}
+      { (icon==="ClipboardCheck") && <FaClipboardCheck/>}
+      { (icon==="LifeRing") && <FaLifeRing />}
     </>
   )
 }

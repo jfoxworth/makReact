@@ -1,6 +1,6 @@
 
 // Standard React items
-import { FC, ReactElement} from 'react';
+import React,{ FC, ReactElement} from 'react';
 import styled from 'styled-components';
 
 // Models
@@ -16,7 +16,7 @@ import HeaderTitle from '../../src/components/HeaderTitle';
 import FaIcon from '../../src/components/FaIcon';
 import CartBody from './CartBody';
 
-const Orders:FC = ():ReactElement => {
+const Cart:FC = ():ReactElement => {
 
   const orders = useSelector(selectOrders);
   const isThereCart = orders?.orders.filter((order:makOrder) => order.isCart ).length > 0;
@@ -52,4 +52,4 @@ const StyledNoCart = styled.div`
 `;
 
 
-export default Orders
+export default React.memo(Cart)

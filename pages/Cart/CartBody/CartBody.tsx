@@ -1,6 +1,6 @@
 
 // Standard React items
-import { FC, ReactElement} from 'react';
+import React, { FC, ReactElement} from 'react';
 import styled from 'styled-components';
 
 // Models
@@ -55,4 +55,4 @@ const CartBody:FC<CartProps> = ({cart}):ReactElement => {
 }
 
 
-export default CartBody
+export default React.memo(CartBody)

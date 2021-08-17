@@ -1,6 +1,6 @@
 
 // Standard React items
-import { FC, ReactElement} from 'react';
+import React, { FC, ReactElement} from 'react';
 import styled from 'styled-components';
 
 // Models
@@ -38,4 +38,4 @@ const StyledNoCart = styled.div`
 `;
 
 
-export default CartProducts
+export default React.memo(CartProducts);

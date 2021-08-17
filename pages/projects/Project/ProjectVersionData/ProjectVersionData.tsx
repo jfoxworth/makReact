@@ -10,7 +10,11 @@
 */
 
 // Standard React items
-import { FC, JSXElementConstructor, ReactElement, useState } from 'react';
+import { FC, ReactElement, useState } from 'react';
+
+// Redux stuff
+import { versionUpdateStart } from '../../../../src/redux/versions/versions.actions';
+import { useDispatch } from 'react-redux';
 
 // Models
 import makProject from '../../../../src/types/makProject';
@@ -34,6 +38,7 @@ type propItems = {
 
 const ProjectVersionData:FC<propItems> = ({thisOrder, thisProject, versions}:propItems):ReactElement => {
 
+  const dispatch = useDispatch();
   const [vName, setVName]=useState(versions[0]['name']);
   const [vDesc, setVDesc]=useState(versions[0]['description']);
 
@@ -48,10 +53,16 @@ const ProjectVersionData:FC<propItems> = ({thisOrder, thisProject, versions}:pro
   }
 
   // Handles when a user changes an input box
-  const handleInputChange = (event:React.ChangeEvent<HTMLInputElement>) =>{
-    if (event.target.id=="name"){ setVName(event.target.value); }
-    if (event.target.id=="description"){ setVDesc(event.target.value); }
+  const handleNameChange = (event:React.ChangeEvent<HTMLInputElement>) =>{
+    setVName(event.target.value); 
+    dispatch(versionUpdateStart({...selectedVersion, name:event.target.value }));
   }
+
+  const handleDescChange = (event:React.ChangeEvent<HTMLInputElement>) =>{
+    setVDesc(event.target.value); 
+    dispatch(versionUpdateStart({...selectedVersion, description:event.target.value }));
+  }
+
   
 
   return(
@@ -80,7 +91,7 @@ const ProjectVersionData:FC<propItems> = ({thisOrder, thisProject, versions}:pro
                                          text={vName} 
                                          editable={true} 
                                          editStatus={true} 
-                                         handleChange={handleInputChange} />
+                                         handleChange={handleNameChange} />
 
               <ContentBox.ContentBoxItem name={'Description'} 
                                          id={'description'} 
@@ -88,7 +99,7 @@ const ProjectVersionData:FC<propItems> = ({thisOrder, thisProject, versions}:pro
                                          text={vDesc} 
                                          editable={true} 
                                          editStatus={true} 
-                                         handleChange={handleInputChange} />
+                                         handleChange={handleDescChange} />
 
             </ContentBoxColumn>
 

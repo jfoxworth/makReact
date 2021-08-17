@@ -14,12 +14,17 @@ import { takeLatest, call, put, all } from "@redux-saga/core/effects";
 import VersionActionTypes from "./versions.types";
 import { firestore, convertCollectionSnapshotToMap } from '../../../firebase/firebase.utils';
 import {
+  fetchVersionsStart,
   fetchVersionsSuccess,
   fetchVersionsFailure,
   versionUpdateStart,
   versionUpdateSuccess,
-  versionUpdateFailure
+  versionUpdateFailure,
+  createVersionSuccess,
+  createVersionFailure
 } from './versions.actions';
+
+import { makeNewVersion } from "../../types/makVersion";
 
 
 export function* fetchVersionsAsync(){
@@ -33,7 +38,7 @@ export function* fetchVersionsAsync(){
   }
 }
 
-export function* fetchVersionsStart(){
+export function* fetchVersionsStartSagas(){
   yield takeLatest(
     VersionActionTypes.FETCH_VERSIONS_START,
     fetchVersionsAsync)
@@ -52,17 +57,16 @@ export function* createNewVersionSagas(){
 
 
 // This function creates a version
-export const createNewVersionAsync = async (payload) => {
-
+export function* createNewVersionAsync(payload) {
   const versionsRef = firestore.collection(`versions`);
-
-  let newVersion = makeNewVersion(payload.payload.version, payload.payload.user);
-
+  let newVersion = makeNewVersion(payload.payload.project, payload.payload.user, payload.payload.measurements);
   try {
-    await versionsRef.add(newVersion);
-    fetchVersionsAsync();
+    versionsRef.add(newVersion);
+    yield put(fetchVersionsStart());
+    yield put(createVersionSuccess());
   } catch (error) {
     console.log('error creating version', error.message);
+    yield put(createVersionFailure());
   }
   
   return versionsRef;
@@ -100,7 +104,8 @@ export function* versionsUpdateStart(thisVersion){
 
 export function* versionsSagas(){
   yield all(
-    [call(fetchVersionsStart)]
-    )
+    [call(fetchVersionsStartSagas),
+     call(versionUpdateStart),
+     call(createNewVersionSagas)])
   
 }

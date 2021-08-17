@@ -19,7 +19,11 @@ interface propType {
 const OrdersCards:FC<propType> = ({orders}):ReactElement => (
 
   <div id="orders-main" className="columns is-account-grid is-multiline">
-    <OrderCard order={{} as makOrder} />
+    {
+      orders.map((order, index)=>
+        <OrderCard order={order} key={`ordercard${index}`} />
+      )
+    }
   </div>
     
 )

@@ -28,7 +28,7 @@ export default interface makOrder {
 	homeAddress 		: makAddress;
 	shippingAddress : makAddress;
 	billingAddress 	: makAddress;
-	stage 					: 'Initial Design' | 'Design Accepted' | 'Deposit Made' | 'Shipping' | 'Delivered'; 
+	stage 					: 'CART' | 'INITIAL_DESIGN' | 'DESIGN_ACCEPTED' | 'DEPOSIT_MADE' | 'SHIPPING' | 'DELIVERED'; 
 	initialCost			: number;
 	tax							: number;
 	totalCost 			: number;
@@ -84,7 +84,7 @@ export const makeNewOrder = () => {
     homeAddress : homeAddress,
     shippingAddress : shipAddress,
     billingAddress : billingAddress,
-    stage : 'Initial Design',
+    stage : 'CART',
     initialCost: 0,
     tax : 0,
     totalCost: 0,
@@ -94,3 +94,44 @@ export const makeNewOrder = () => {
 
 	return newOrder
 }
+
+export const ORDERS_OBJ = {
+
+	stages : {
+		CART: "Still in Cart",
+		INITIAL_DESIGN: "Initial Design",
+		DESIGN_ACCEPTED: "Design Accepted",
+		DEPOSIT_MADE: "Deposit Made",
+		SHIPPING: "Shipping",
+		DELIVERED: "Delivered"
+	},
+
+	completion : {
+		CART:2,
+		INITIAL_DESIGN: 20,
+		DESIGN_ACCEPTED: 40,
+		DEPOSIT_MADE: 60,
+		SHIPPING: 80,
+		DELIVERED: 100
+	},
+
+	colors : {
+		CART:'grey',
+		INITIAL_DESIGN: 'blue',
+		DESIGN_ACCEPTED: 'yellow',
+		DEPOSIT_MADE: 'orange',
+		SHIPPING: 'brown',
+		DELIVERED: 'green'
+	},
+
+	icons : {
+		CART:'ShoppingCart',
+		INITIAL_DESIGN: 'Palette',
+		DESIGN_ACCEPTED: 'PencilRuler',
+		DEPOSIT_MADE: 'CreditCard',
+		SHIPPING: 'Truck',
+		DELIVERED: 'ClipboardCheck'
+	}
+
+}
+

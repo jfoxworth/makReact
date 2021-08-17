@@ -13,10 +13,12 @@
 import { ReactElement } from 'react';
 
 // Components
-import ContentBoxHeader from './ContentBoxHeader/ContentBoxHeader';
-import ContentBoxContent from './ContentBoxContent/ContentBoxContent';
-import ContentBoxColumn from './ContentBoxColumn/ContentBoxColumn';
-import ContentBoxItem from './ContentBoxItem/ContentBoxItem';
+import ContentBoxHeader from './ContentBoxHeader';
+import ContentBoxContent from './ContentBoxContent';
+import ContentBoxColumn from './ContentBoxColumn';
+import ContentBoxItem from './ContentBoxItem';
+import ContentBoxText from './ContentBoxText';
+import ContentBoxAction from './ContentBoxAction';
 
 
 type propItems = {
@@ -37,6 +39,8 @@ ContentBox.ContentBoxHeader = ContentBoxHeader;
 ContentBox.ContentBoxContent =  ContentBoxContent;
 ContentBox.ContentBoxColumn = ContentBoxColumn;
 ContentBox.ContentBoxItem = ContentBoxItem;
+ContentBox.ContentBoxText = ContentBoxText;
+ContentBox.ContentBoxAction = ContentBoxAction;
 
 
 export default ContentBox

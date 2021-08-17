@@ -41,7 +41,41 @@ const versionsReducer = (state=INITIAL_STATE, action:any)=>{
           isFetching:false,
           errorMessage:action.payload
       }
-    
+      case VersionActionTypes.VERSION_UPDATE_START:
+        return {
+          ...state,
+          isFetching:true,
+          project:action.payload
+      }
+      case VersionActionTypes.VERSION_UPDATE_SUCCESS:
+        return {
+          ...state,
+          isFetching:false
+      }
+      case VersionActionTypes.VERSION_UPDATE_FAILURE:
+        return {
+          ...state,
+          isFetching:false,
+          errorMessage:action.payload
+      }
+      case VersionActionTypes.VERSION_CREATE_START:
+        console.log('In version create reducer');
+        return {
+          ...state,
+          isFetching:false,
+          design:action.payload
+      }
+      case VersionActionTypes.VERSION_CREATE_SUCCESS:
+        return {
+          ...state,
+          isFetching:false
+      }
+      case VersionActionTypes.VERSION_CREATE_FAILURE:
+        return {
+          ...state,
+          isFetching:false,
+          errorMessage:action.payload
+      }    
 
     default:
       return state;

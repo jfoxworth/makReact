@@ -1,6 +1,6 @@
 
 // Standard React items
-import { FC, ReactElement} from 'react';
+import React, { FC, ReactElement} from 'react';
 import styled from 'styled-components';
 
 // Redux related items
@@ -17,6 +17,9 @@ import makOrder from '../../../src/types/makOrder';
 
 // Components
 import FaIcon from '../../../src/components/FaIcon';
+
+// Functions
+import formatMoney from '../../../src/functions/formatMoney';
 
 
 interface CartProps {
@@ -63,7 +66,7 @@ const CartItem:FC<CartProps> = ({cart, item}):ReactElement => {
             </span>
             <span className="product-price">
                 <span>Price</span>
-                <span>{item.price}</span>
+                <span>{formatMoney(item.price)}</span>
             </span>
 
             <div data-trigger="spinner" className="main-cart-spinner">
@@ -98,4 +101,4 @@ const StyledNoCart = styled.div`
 `;
 
 
-export default CartItem
+export default React.memo(CartItem);

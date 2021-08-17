@@ -11,14 +11,17 @@
 
 // Standard React items
 import { FC, ReactElement, SyntheticEvent, useState } from 'react';
+import { useRouter } from 'next/router'
 
 // React redux items
 import { useDispatch } from 'react-redux';
-import { projectsUpdateStart } from '../../../../src/redux/projects/projects.actions';
+import { fetchProjectsStart, projectsUpdateStart } from '../../../../src/redux/projects/projects.actions';
+import { versionUpdateStart } from '../../../../src/redux/versions/versions.actions';
 
 // Models
 import makProject from '../../../../src/types/makProject';
 import makDesign from '../../../../src/types/makDesign';
+import makVersion from '../../../../src/types/makVersion';
 
 // Hooks
 import useFirestoreImage from '../../../../src/components/Hooks/useFirestoreImage';
@@ -29,6 +32,7 @@ import ContentBox from '../../../../src/components/ContentBox/ContentBox';
 import ContentBoxContent from '../../../../src/components/ContentBox/ContentBoxContent/ContentBoxContent';
 import ContentBoxColumn from '../../../../src/components/ContentBox/ContentBoxColumn/ContentBoxColumn';
 import ContentBoxHeader from '../../../../src/components/ContentBox/ContentBoxHeader/ContentBoxHeader';
+import ContentBoxText from '../../../../src/components/ContentBox/ContentBoxText';
 import Image from 'next/image';
 
 // Styles
@@ -36,15 +40,17 @@ import styles from '../../../../styles/styles.module.css';
 
 interface propType {
   thisProject:makProject,
-  thisDesign:makDesign
+  thisDesign:makDesign,
+  theseVersions:makVersion[]
 }
 
 
-const ProjectNameDesc:FC<propType> = ({thisProject, thisDesign}:propType):ReactElement => {
+const ProjectNameDesc:FC<propType> = ({thisProject, thisDesign, theseVersions}:propType):ReactElement => {
 
   const [myName, setMyName] = useState(thisProject.name+'');
   const [myDesc, setMyDesc] = useState(thisProject.description);
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const handleNameChange = (event:SyntheticEvent)=>{
     let newName=(event.target as HTMLInputElement).value
@@ -59,6 +65,15 @@ const ProjectNameDesc:FC<propType> = ({thisProject, thisDesign}:propType):ReactE
 
   const designImage = useFirestoreImage(thisDesign.marketplace.images.filter((image:any)=>image.mainImage)[0].path);
 
+  const deleteProject = (thisProject:makProject, theseVersions:makVersion[]) => {
+    dispatch(projectsUpdateStart({...thisProject, deleted:true}));
+    dispatch(fetchProjectsStart());
+    theseVersions.forEach((version:makVersion)=>{
+      dispatch(versionUpdateStart({...version, deleted:true}));
+    });
+    router.push('/Projects');
+  }
+
   return(
     
       <div className="column is-12">
@@ -67,12 +82,12 @@ const ProjectNameDesc:FC<propType> = ({thisProject, thisDesign}:propType):ReactE
           <ContentBoxContent>
             <ContentBoxColumn width={'6'}>
 
-              <ContentBox.ContentBoxItem name={'Date Project Created'} 
-                                         text={useTimeDate(thisProject.dateCreated, '')} 
-                                         icon={'Calendar'}
-                                         editable={false} 
-                                         editStatus={false} 
-                                         handleChange={()=>{}} />
+              <ContentBox.ContentBoxText text={`Date Project Created : ${useTimeDate(thisProject.dateCreated, '')}`} 
+                                         icon={'Calendar'}/>
+
+              <ContentBox.ContentBoxAction text={`Delete Project`} 
+                                            icon={'Trash'}
+                                            clickHandler={()=>deleteProject(thisProject, theseVersions)}/>
 
               <ContentBox.ContentBoxItem name={'Name of the project'} 
                                          text={myName} 

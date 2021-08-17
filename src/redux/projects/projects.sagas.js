@@ -19,7 +19,8 @@ import {
   fetchProjectsFailure,
   projectsUpdateSuccess,
   projectsUpdateFailure,
-  fetchProjectsStart
+  fetchProjectsStart,
+  createProjectSuccess
 } from './projects.actions';
 import { createVersionStart } from "../versions/versions.actions";
 import { selectUser } from "../user/user.selector";
@@ -34,7 +35,7 @@ export function* fetchProjectsAsync(){
     const projectsRef = firestore.collection('projects');
     const projectsSnapshot = yield projectsRef.where("creatorId", '==', user.currentUser.id).where("deleted", '==', false).get();
     const projectsArray = yield call(convertCollectionSnapshotToMap, projectsSnapshot)
-    yield put(fetchProjectsSuccess(projectsArray))
+    yield put(fetchProjectsSuccess(projectsArray));
   }catch(error){
     yield put(fetchProjectsFailure(error.message))
   }
@@ -56,21 +57,20 @@ export function* createNewProjectSagas(){
 
 
 // This function creates a project
-export const createNewProjectAsync = async (payload) => {
-
-  console.log(payload);
-  let user = select(selectUser);
+export function* createNewProjectAsync(payload) {
+  let user = yield select(selectUser);
   const projectsRef = firestore.collection(`projects`);
-
   let newProject = makeNewProject(payload.payload.design, payload.payload.user);
-
   try {
-    await projectsRef.add(newProject).then((docRef) => {
-      put(createVersionStart(docRef.doc, user, []));
+    yield projectsRef.add(newProject).then((docRef) => {
+      newProject.id = docRef.id;
     });
-    fetchProjectsAsync();
+    yield put(createProjectSuccess());
+    yield put(createVersionStart(newProject, user.currentUser, []));
+    yield put(fetchProjectsStart());
   } catch (error) {
     console.log('error creating project', error.message);
+    yield put(createProjectFailure());
   }
   
   return projectsRef;
@@ -96,6 +96,10 @@ export function* projectsUpdateStart(thisProject){
     ProjectActionTypes.PROJECTS_UPDATE_START,
     projectsUpdateAsync)
 }
+
+
+
+
 
 
 export function* projectsSagas(){
