@@ -24,8 +24,8 @@ export default interface makOrder {
 	isCart					: boolean;				// True if this is the current cart; false if not
 	items 					: makVersion[];		// An array of versions for projects that are included in this order
 	quantities 			: [];							// An array with keys of the version IDs and entries corresponding to the number ordered
-	dateCreated 		: number;						// The date that the order was created
-	dateAccessed  	: number;						// The date that the order was last accessed or altered
+	dateCreated 		: number;					// The date that the order was created
+	dateAccessed  	: number;					// The date that the order was last accessed or altered
 	homeAddress 		: makAddress;
 	shippingAddress : makAddress;
 	billingAddress 	: makAddress;
@@ -35,6 +35,7 @@ export default interface makOrder {
 	totalCost 			: number;
 	deleted 				: boolean;
 	userId					: string;
+	handler					: string;					// Name of the person handling the order
 }
 
 export const makeNewOrder = (isCart:boolean, stage:'CART' | 'INITIAL_DESIGN' | 'DESIGN_ACCEPTED' | 'DEPOSIT_MADE' | 'SHIPPING' | 'DELIVERED', user:UserData) => {
@@ -91,6 +92,7 @@ export const makeNewOrder = (isCart:boolean, stage:'CART' | 'INITIAL_DESIGN' | '
     totalCost: 0,
     deleted: false,
     userId : user.id,
+		handler : 'Mak Studio'
   }
 
 	return newOrder

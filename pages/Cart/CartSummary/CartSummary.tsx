@@ -32,7 +32,7 @@ const CartSummary:FC<CartProps> = ({order}):ReactElement => {
 
   const clickHandler = (thisOrder:makOrder) => {
     dispatch(orderUpdateStart({...thisOrder, isCart:false, stage:'INITIAL_DESIGN'}));
-    dispatch(createNewOrderStart(true));
+    dispatch(createNewOrderStart({isCart:true, stage:'CART'}));
   }
 
 
