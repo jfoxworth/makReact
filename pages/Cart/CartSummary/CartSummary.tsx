@@ -3,6 +3,10 @@
 import React, { FC, ReactElement, useEffect } from 'react';
 import styled from 'styled-components';
 
+// Redux items
+import { useDispatch } from 'react-redux';
+import { orderUpdateStart, createNewOrderStart } from '../../../src/redux/orders/orders.actions';
+
 // Models
 import makOrder from '../../../src/types/makOrder';
 
@@ -23,6 +27,15 @@ const CartSummary:FC<CartProps> = ({order}):ReactElement => {
   let taxes = totalCost * 0.0825;
   let shipping =  order.items.length * 50;
   let customerCost = totalCost + taxes + shipping;
+
+  const dispatch = useDispatch();
+
+  const clickHandler = (thisOrder:makOrder) => {
+    dispatch(orderUpdateStart({...thisOrder, isCart:false, stage:'INITIAL_DESIGN'}));
+    dispatch(createNewOrderStart(true));
+  }
+
+
 
   return(
 
@@ -59,8 +72,12 @@ const CartSummary:FC<CartProps> = ({order}):ReactElement => {
 
         </div>
 
-        <button id="init-checkout"
-            className="button is-fullwidth feather-button is-bold primary-button raised is-rounded">Checkout</button>
+        <button 
+          id="init-checkout"
+          className="button is-fullwidth feather-button is-bold primary-button raised is-rounded"
+          onClick={()=>clickHandler(order)}>
+          Proceed with Order
+        </button>
 
         <button id="update-cart-page"
             className="button is-fullwidth feather-button is-bold secondary-button raised is-rounded is-hidden">Update

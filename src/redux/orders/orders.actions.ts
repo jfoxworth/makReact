@@ -69,8 +69,8 @@ export const ordersUpdateFailure = (errorMessage:any) =>({
 })
 
 
-export const createNewOrderStart = (isCart:boolean=false) =>({
+export const createNewOrderStart = ({isCart=true, stage='CART'}) =>({
   type:OrderActionTypes.CREATE_NEW_ORDER_START,
-  payload:isCart
+  payload:{isCart, stage}
 });
 

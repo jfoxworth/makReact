@@ -17,6 +17,7 @@
 
 import makVersion from './makVersion';
 import makAddress from './address';
+import UserData from './userData';
 
 export default interface makOrder {
 	id 							: string;					// The id of the order
@@ -36,7 +37,7 @@ export default interface makOrder {
 	userId					: string;
 }
 
-export const makeNewOrder = () => {
+export const makeNewOrder = (isCart:boolean, stage:'CART' | 'INITIAL_DESIGN' | 'DESIGN_ACCEPTED' | 'DEPOSIT_MADE' | 'SHIPPING' | 'DELIVERED', user:UserData) => {
 	
 	let shipAddress:makAddress = {
     id: '',
@@ -76,7 +77,7 @@ export const makeNewOrder = () => {
 
 	let newOrder:makOrder = {
     id:'',
-    isCart:false,
+    isCart:isCart,
     items:[],
     quantities:[],
     dateCreated : Date.now(),
@@ -84,12 +85,12 @@ export const makeNewOrder = () => {
     homeAddress : homeAddress,
     shippingAddress : shipAddress,
     billingAddress : billingAddress,
-    stage : 'CART',
+    stage : isCart ? 'CART' : stage,
     initialCost: 0,
     tax : 0,
     totalCost: 0,
     deleted: false,
-    userId : '',
+    userId : user.id,
   }
 
 	return newOrder

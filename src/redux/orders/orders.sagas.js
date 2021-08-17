@@ -19,16 +19,13 @@ import {
   fetchOrdersFailure,
   ordersUpdateSuccess,
   ordersUpdateFailure,
+  createOrderSuccess,
+  createOrderFailure
 } from './orders.actions';
 import { selectUser } from "../user/user.selector";
 
-// Models
-import makOrder from "../../types/makOrder";
-import UserData from "../../types/userData";
-
 // Functions
 import { makeNewOrder } from "../../types/makOrder";
-import makVersion from "../../types/makVersion";
 
 
 export function* fetchOrdersAsync(){
@@ -59,28 +56,25 @@ export function* fetchOrdersStartSagas(){
 
 
 export function* createNewOrderSagas(){
-  let user = yield select(selectUser)
   yield takeLatest(
     OrderActionTypes.CREATE_NEW_ORDER_START,
-    createNewOrderAsync(false, user)
-    )
+    createNewOrderAsync)
 }
 
 
 // This function creates an order
-export const createNewOrderAsync = async (isCart, user) => {
-
+export function* createNewOrderAsync(payload) {
+  let user = yield select(selectUser)
   const ordersRef = firestore.collection(`orders`);
-
-  let newOrder = makeNewOrder();
-  newOrder.isCart =  isCart;
-  newOrder.userId = user.id;
+  let newOrder = makeNewOrder(payload.payload.isCart, payload.payload.stage, user.currentUser);
 
   try {
-    await ordersRef.add(newOrder);
-    fetchOrdersAsync();
+    yield ordersRef.add(newOrder);
+    yield put(createOrderSuccess());
+    yield put(fetchOrdersAsync());
   } catch (error) {
     console.log('error creating order', error.message);
+    yield put(createOrderFailure());
   }
   
   return ordersRef;
@@ -112,7 +106,8 @@ export function* updateOrderStartSagas(){
 export function* ordersSagas(){
   yield all(
     [call(fetchOrdersStartSagas),
-     call(updateOrderStartSagas)]
+     call(updateOrderStartSagas),
+     call(createNewOrderSagas)]
   )
 };
 

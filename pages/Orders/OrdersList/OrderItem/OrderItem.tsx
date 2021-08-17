@@ -78,7 +78,7 @@ const OrderItem:FC<propType> = ({order, projects}):ReactElement => (
 				</div>
 
 				<div className="meta-actions">
-					<Link href={`/orders/${order.id}`}>
+					<Link href={`/order/${order.id}`}>
 						<a className="button is-rounded is-fullwidth primary-button raised">Order Details</a>
 					</Link>
 					<Link href={`/invoice/${order.id}`}>

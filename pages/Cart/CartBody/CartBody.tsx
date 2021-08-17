@@ -17,8 +17,6 @@ interface CartProps {
 
 const CartBody:FC<CartProps> = ({cart}):ReactElement => {
 
-  console.log(cart)
-
   return(
 
     <div className="columns is-account-grid is-multiline">

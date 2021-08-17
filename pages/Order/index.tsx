@@ -9,4 +9,4 @@
 *
 */
 
-export { default } from './[DetailedOrder]';
+export { default } from './[OrderId]';

@@ -23,7 +23,7 @@ const OrdersCard:FC<propType> = ({order}):ReactElement => (
 
         <div className="order-info">
             <span>
-              <Link href={`/order/${order.id}`}><a>Order-{order.dateCreated}</a></Link>
+              <Link href={`/Order/${order.id}`}><a>Order-{order.dateCreated}</a></Link>
             </span>
             <span className="tag" style={{backgroundColor:ORDERS_OBJ.colors[order.stage], color:'#EDEDED'}}>{ORDERS_OBJ.stages[order.stage]}</span>
         </div>
