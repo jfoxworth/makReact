@@ -11,7 +11,7 @@
 
 // Standard React items
 import { FC, ReactElement, SyntheticEvent, useState } from 'react';
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
 
 // React redux items
 import { useDispatch } from 'react-redux';

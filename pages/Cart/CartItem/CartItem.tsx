@@ -17,6 +17,7 @@ import makOrder from '../../../src/types/makOrder';
 
 // Components
 import FaIcon from '../../../src/components/FaIcon';
+import Image from 'next/image';
 
 // Functions
 import formatMoney from '../../../src/functions/formatMoney';
@@ -56,37 +57,36 @@ const CartItem:FC<CartProps> = ({cart, item}):ReactElement => {
       <ul className="cart-content">
 
         <li>
-            <img src="http://via.placeholder.com/500x500/ffffff/999999"
-                data-demo-src="assets/img/products/office6.png" alt="" />
+          <Image src={'http://via.placeholder.com/500x500/ffffff/999999'} width={'500px'} height={'500px'} alt={''} />
 
 
-            <span className="product-info">
-                <span>{thisDesign.title}</span>
-                <span>{thisDesign.category}</span>
-            </span>
-            <span className="product-price">
-                <span>Price</span>
-                <span>{formatMoney(item.price)}</span>
-            </span>
+          <span className="product-info">
+              <span>{thisDesign.title}</span>
+              <span>{thisDesign.category}</span>
+          </span>
+          <span className="product-price">
+              <span>Price</span>
+              <span>{formatMoney(item.price)}</span>
+          </span>
 
-            <div data-trigger="spinner" className="main-cart-spinner">
-                <input className="hidden-spinner" type="hidden" value="1" data-spin="spinner" data-rule="quantity"
-                    data-min="1" data-max="99" />
-                <a className="spinner-button is-remove" href="javascript:;" data-spin="down">
-                    <FaIcon icon={'Minus'} />
-                </a>
-                <span className="spinner-value">1</span>
-                <a className="spinner-button is-add" href="javascript:;" data-spin="up">
-                    <FaIcon icon={'Plus'} />
-                </a>
-            </div>
+          <div data-trigger="spinner" className="main-cart-spinner">
+              <input className="hidden-spinner" type="hidden" value="1" data-spin="spinner" data-rule="quantity"
+                  data-min="1" data-max="99" />
+              <a className="spinner-button is-remove" href="javascript:;" data-spin="down">
+                  <FaIcon icon={'Minus'} />
+              </a>
+              <span className="spinner-value">1</span>
+              <a className="spinner-button is-add" href="javascript:;" data-spin="up">
+                  <FaIcon icon={'Plus'} />
+              </a>
+          </div>
 
-            <span className="action">
-                <span className="action-link is-remove has-simple-popover" data-content="Remove from Cart"
-                    data-placement="top">
-                    <a href="#" onClick={()=>removeFromCart(cart, item.id)}><FaIcon icon={'Trash'}/></a>
-                </span>
-            </span>
+          <span className="action">
+              <span className="action-link is-remove has-simple-popover" data-content="Remove from Cart"
+                  data-placement="top">
+                  <a href="#" onClick={()=>removeFromCart(cart, item.id)}><FaIcon icon={'Trash'}/></a>
+              </span>
+          </span>
         </li>
       </ul>
     </div>

@@ -55,6 +55,15 @@ import { FaTag,
          FaCreditCard,
          FaClipboardCheck,
          FaLifeRing,
+         FaListUl,
+         FaClipboardList,
+         FaCommentDollar,
+         FaDownload,
+         FaFileDownload,
+         FaCube,
+         FaTimes,
+         FaTimesCircle,
+         FaBars,
          FaCopy} from 'react-icons/fa';
 
 
@@ -69,11 +78,16 @@ const FaIcon:FC<propsObj> = ({icon}):ReactElement => {
   return (
     <>
       { (icon==="Tag") && <FaTag /> }
+      { (icon==="FileDownload") && <FaFileDownload /> }
+      { (icon==="Download") && <FaDownload /> }
       { (icon==="QuestionCircle") && <FaQuestionCircle /> }
       { (icon==="UserAstronaut") && <FaUserAstronaut /> }
       { (icon==="User") && <FaUser /> }
+      { (icon==="CommentDollar") && <FaCommentDollar /> }
       { (icon==="InfoCircle") && <FaInfoCircle /> }
       { (icon==="List") && <FaList /> }
+      { (icon==="ClipboardList") && <FaClipboardList /> }
+      { (icon==="ListUl") && <FaListUl /> }
       { (icon==="Cogs") && <FaCogs /> }
       { (icon==="Envelope") && <FaEnvelope /> }
       { (icon==="Key") && <FaKey /> }
@@ -83,6 +97,7 @@ const FaIcon:FC<propsObj> = ({icon}):ReactElement => {
       { (icon==="ChevronUp") && <FaChevronUp /> }
       { (icon==="ChevronDown") && <FaChevronDown /> }
       { (icon==="Cubes") && <FaCubes /> }
+      { (icon==="Cube") && <FaCube /> }
       { (icon==="Tasks") && <FaTasks /> }
       { (icon==="PlusSquare") && <FaPlusSquare /> }
       { (icon==="Book") && <FaBook /> }
@@ -111,6 +126,12 @@ const FaIcon:FC<propsObj> = ({icon}):ReactElement => {
       { (icon==="CreditCard") && <FaCreditCard/>}
       { (icon==="ClipboardCheck") && <FaClipboardCheck/>}
       { (icon==="LifeRing") && <FaLifeRing />}
+      { (icon==="Close") && <FaTimes />}
+      { (icon==="CloseCircle") && <FaTimesCircle />}
+      { (icon==="Bars") && <FaBars />}
+
+      { (icon==="settings") && <FaCog />}
+      { (icon==="filter_list") && <FaBars />}
     </>
   )
 }
