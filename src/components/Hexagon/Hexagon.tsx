@@ -24,19 +24,20 @@ import FaIcon from '../FaIcon';
 interface propTypes {
   text:string;
   icon:string;
+  type:string|number;
   clickHandler:Function
 }
 
-const Hexagon:FC<propTypes> = ({text, icon, clickHandler}):ReactElement => {
+const Hexagon:FC<propTypes> = ({text, icon, type, clickHandler}):ReactElement => {
 
   return (
     <>
-      <StyledLeft onClick={()=>clickHandler(text)} />
-      <StyledHex onClick={()=>clickHandler(text)}>
+      <StyledLeft onClick={()=>clickHandler(type, text)} />
+      <StyledHex onClick={()=>clickHandler(type, text)}>
         <StyledIcon><FaIcon icon={icon} /></StyledIcon>
         <StyledText>{text}</StyledText>
       </StyledHex>
-      <StyledRight onClick={()=>clickHandler(text)} />
+      <StyledRight onClick={()=>clickHandler(type, text)} />
     </>
   )
 }
@@ -64,11 +65,12 @@ const StyledText = styled.div`
   transform: rotate(-60deg)
   skew(0deg);
   position:relative;
-  right:-36px;
-  bottom:8px;
+  right:-35px;
+  bottom:5px;
   font-size:0.7em;
   color:#898989;
   text-align:center;
+  white-space:nowrap;
 `;
 
 const StyledHex = styled.div`

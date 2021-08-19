@@ -12,14 +12,12 @@ import Hexagon from '../../../src/components/Hexagon';
 
 
 interface typeProps {
-  type: string,
+  type: string|number,
 	thisDesign: makDesign,
 	clickHandler:Function
 }
 
 const HexMenu:FC<typeProps> = ({type, thisDesign, clickHandler}:typeProps):ReactElement => {
-
-	console.log(thisDesign.parameterMenus);
 
   return(
     
@@ -28,24 +26,48 @@ const HexMenu:FC<typeProps> = ({type, thisDesign, clickHandler}:typeProps):React
 				type == 'Design' && thisDesign.parameterMenus &&
 				<HexStyledMenu>
 					<HexStyledRow1>
-						<Hexagon icon={'CommentDollar'} text={'Price'} clickHandler={clickHandler} />
-						<Hexagon icon={'Cube'} text={'Designs'} clickHandler={clickHandler} />
+						<Hexagon icon={'CommentDollar'} text={'Price'} type={'price'} clickHandler={clickHandler} />
+						<Hexagon icon={'Cube'} text={'Designs'} type={'designs'} clickHandler={clickHandler} />
 					</HexStyledRow1>
 					<HexStyledRow2>
-						<Hexagon icon={'Download'} text={'Tech Doc'} clickHandler={clickHandler} />
+						<Hexagon icon={'Download'} text={'Tech Doc'} type={'docs'} clickHandler={clickHandler} />
 					</HexStyledRow2>
 					<HexStyledRow3>
 						{ thisDesign.parameterMenus[0] &&
 							<Hexagon icon={thisDesign.parameterMenus[0]['icon']} 
 											 text={thisDesign.parameterMenus[0]['label']} 
+											 type={0}
 											 clickHandler={clickHandler} />
 						}
 						{ thisDesign.parameterMenus[1] &&
 							<Hexagon icon={thisDesign.parameterMenus[1]['icon']} 
 											 text={thisDesign.parameterMenus[1]['label']} 
+											 type={1}
 											 clickHandler={clickHandler} />
 						}
 					</HexStyledRow3>
+					<HexStyledRow4>
+						{ thisDesign.parameterMenus[2] &&
+							<Hexagon icon={thisDesign.parameterMenus[2]['icon']} 
+											 text={thisDesign.parameterMenus[2]['label']} 
+											 type={2}
+											 clickHandler={clickHandler} />
+						}
+					</HexStyledRow4>
+					<HexStyledRow5>
+						{ thisDesign.parameterMenus[3] &&
+							<Hexagon icon={thisDesign.parameterMenus[3]['icon']} 
+											 text={thisDesign.parameterMenus[3]['label']} 
+											 type={3}
+											 clickHandler={clickHandler} />
+						}
+						{ thisDesign.parameterMenus[4] &&
+							<Hexagon icon={thisDesign.parameterMenus[4]['icon']} 
+											 text={thisDesign.parameterMenus[4]['label']} 
+											 type={4}
+											 clickHandler={clickHandler} />
+						}
+					</HexStyledRow5>
 				</HexStyledMenu>
 			}
     </>

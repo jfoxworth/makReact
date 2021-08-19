@@ -28,9 +28,11 @@ const DesignId:FC = ():ReactElement => {
   }
 
   const [menuType, setMenuType] = useState('');
+  const [title, setTitle] = useState('');
 
-  const handleMenu = (type:string) => {
+  const handleMenu = (type:string, title:string) => {
     setMenuType(type);
+    setTitle(title);
   }
 
   return(
@@ -39,8 +41,8 @@ const DesignId:FC = ():ReactElement => {
       <HexMenu type={'Design'} thisDesign={thisDesign} clickHandler={handleMenu} />
 
       {
-        menuType && thisDesign &&
-        <SideMenu menuType={menuType} thisDesign={thisDesign} clickHandler={handleMenu} />
+        menuType!==null && thisDesign &&
+        <SideMenu menuType={menuType} title={title} thisDesign={thisDesign} clickHandler={handleMenu} />
       }
     </>
     

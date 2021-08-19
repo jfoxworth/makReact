@@ -8,35 +8,39 @@ import SideHeader from './SideHeader';
 import DesignsWindow from './DesignsWindow';
 import PriceWindow from './PriceWindow';
 import TechWindow from './TechWindow';
+import SettingsWindow from './SettingsWindow';
 
 // Models
 import makDesign from '../../../src/types/makDesign';
 
 interface propTypes {
-  menuType: string,
-  thisDesign: makDesign
+  menuType: string|number,
+  thisDesign: makDesign,
+  title:string,
   clickHandler : Function
 }
 
-const SideMenu:FC<propTypes> = ({menuType, thisDesign, clickHandler}:propTypes):ReactElement => {
+const SideMenu:FC<propTypes> = ({menuType, title, thisDesign, clickHandler}:propTypes):ReactElement => {
+
+  console.log(menuType)
 
   return(
     
     <StyledSideBox>
-      <SideHeader text={menuType} clickHandler={clickHandler} />
-      { menuType=='Designs' && <DesignsWindow clickHandler={()=>{}} /> }
-      { menuType=='Price' && <PriceWindow clickHandler={()=>{}} thisDesign={thisDesign} /> }
-      { menuType=='Tech Doc' && <TechWindow thisDesign={thisDesign} /> }
+      <SideHeader text={title} clickHandler={clickHandler} />
+      { menuType=='designs' && <DesignsWindow clickHandler={()=>{}} /> }
+      { menuType=='price' && <PriceWindow clickHandler={()=>{}} thisDesign={thisDesign} /> }
+      { menuType=='docs' && <TechWindow thisDesign={thisDesign} /> }
+      { typeof(menuType)=='number' && <SettingsWindow thisDesign={thisDesign} thisMenu={thisDesign.parameterMenus[menuType]} /> }
     </StyledSideBox>
 
-    
   )
 
 }
 
 const StyledSideBox = styled.div`
   position:fixed;
-  top:400px;
+  top:300px;
   right:75px;
   width:300px;
   border:1px solid #000;

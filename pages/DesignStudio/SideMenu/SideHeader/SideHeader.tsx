@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import FaIcon from '../../../../src/components/FaIcon';
 
 interface typeProps {
-  text:string;
+  text:string|number;
   clickHandler:Function;
 }
 

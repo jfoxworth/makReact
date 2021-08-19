@@ -56,7 +56,7 @@ const FormInput :FC<formInputType> = ({ handleChange,
           { error ? <span className="error">{errorMessage}</span> : null }
       </label>
       
-      <div className="control is-bigger has-icon">
+      <div className={`control ${icon!='' ? 'has-icon is-bigger':''}`}>
 
           <input type={type} 
                 className="input" 
