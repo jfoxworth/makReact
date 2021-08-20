@@ -22,17 +22,15 @@ interface propTypes {
 
 const SideMenu:FC<propTypes> = ({menuType, title, thisDesign, clickHandler}:propTypes):ReactElement => {
 
-  console.log(menuType)
-
   return(
     
-    <StyledSideBox>
+    <StyledSideBox><div>
       <SideHeader text={title} clickHandler={clickHandler} />
       { menuType=='designs' && <DesignsWindow clickHandler={()=>{}} /> }
       { menuType=='price' && <PriceWindow clickHandler={()=>{}} thisDesign={thisDesign} /> }
       { menuType=='docs' && <TechWindow thisDesign={thisDesign} /> }
       { typeof(menuType)=='number' && <SettingsWindow thisDesign={thisDesign} thisMenu={thisDesign.parameterMenus[menuType]} /> }
-    </StyledSideBox>
+    </div></StyledSideBox>
 
   )
 

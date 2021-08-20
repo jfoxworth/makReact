@@ -1,6 +1,18 @@
+/*
+*
+*   Copyright Mak Studio - 2021
+*
+*   Mak Studio is a Houston based supplier of custom furniture and appliances. 
+*   This app lets users design their own pieces and start the purchase process. 
+*
+*   You can reach Mak Studio at www.makstudio.us
+*
+*
+*   This file is the top level component for a user viewing a design in the 3D studio.
+*/
 
 // Standard React items
-import {FC, ReactElement, useState} from 'react';
+import {FC, ReactElement, useState, useEffect} from 'react';
 import { useRouter } from 'next/router';
 
 // Models
@@ -13,6 +25,9 @@ import { selectDesigns } from '../../src/redux/designs/designs.selectors';
 // Other components
 import HexMenu from './HexMenu';
 import SideMenu from './SideMenu';
+import CanvasBase from './CanvasBase';
+
+// Shapediver
 
 
 const DesignId:FC = ():ReactElement => {
@@ -41,9 +56,11 @@ const DesignId:FC = ():ReactElement => {
       <HexMenu type={'Design'} thisDesign={thisDesign} clickHandler={handleMenu} />
 
       {
-        menuType!==null && thisDesign &&
+        menuType!=='' && thisDesign &&
         <SideMenu menuType={menuType} title={title} thisDesign={thisDesign} clickHandler={handleMenu} />
       }
+
+      <CanvasBase />
     </>
     
   )

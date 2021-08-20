@@ -5,6 +5,7 @@ import styled from 'styled-components';
 
 // Components
 import FormInput from '../../../../../src/components/Forms/FormInput';
+import FormSlider from '../../../../../src/components/Forms/FormSlider';
 
 
 interface propTypes {
@@ -20,7 +21,12 @@ const SliderParam:FC<propTypes> = ({param}:propTypes):ReactElement => {
       <StyledLabel>{param.label}</StyledLabel>
 
       <StyledLine>
-        <StyledSlider>Slider</StyledSlider>
+        <StyledSlider><FormSlider min={parseFloat(param.min)} 
+                                  max={parseFloat(param.max)} 
+                                  step={parseFloat(param.step)} 
+                                  dots={param.showTicks} 
+                                  defaultValue={parseFloat(param.value)}
+                                  handleChange={()=>{}}/></StyledSlider>
 
         <StyledInput>
           <FormInput value={param.value} handleChange={()=>{}} />
@@ -56,7 +62,7 @@ const StyledLine =  styled.div`
 const StyledSlider =  styled.div`
   float:left;
   width:65%;
-  margin:0px 5%;
+  margin:10px 5%;
   padding:0px;
 `;
 

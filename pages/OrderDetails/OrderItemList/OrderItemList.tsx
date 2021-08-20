@@ -22,6 +22,8 @@ const OrderItemList = ({thisOrder, projects}:thisProps):ReactElement => {
   return(
 
     <>
+      <div className="left-side-header"><h3>Products</h3></div>
+    
       <div className="flex-table">
 
           <div className="flex-table-header">

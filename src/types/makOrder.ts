@@ -29,16 +29,17 @@ export default interface makOrder {
 	homeAddress 		: makAddress;
 	shippingAddress : makAddress;
 	billingAddress 	: makAddress;
-	stage 					: 'CART' | 'INITIAL_DESIGN' | 'DESIGN_ACCEPTED' | 'DEPOSIT_MADE' | 'SHIPPING' | 'DELIVERED'; 
+	stage 					: 'CART' | 'DESIGN_SUPPORT' | 'DESIGN_ACCEPTED' | 'DEPOSIT_MADE' | 'PLANS_ACCEPTED' | 'PAYMENT_COMPLETE' | 'MANUFACTURING' | 'SHIPPING' | 'DELIVERED'; 
 	initialCost			: number;
 	tax							: number;
 	totalCost 			: number;
 	deleted 				: boolean;
 	userId					: string;
-	handler					: string;					// Name of the person handling the order
+	handler					: { id:string, name:string};					// ID and name of the person handling the order
+
 }
 
-export const makeNewOrder = (isCart:boolean, stage:'CART' | 'INITIAL_DESIGN' | 'DESIGN_ACCEPTED' | 'DEPOSIT_MADE' | 'SHIPPING' | 'DELIVERED', user:UserData) => {
+export const makeNewOrder = (isCart:boolean, stage:'CART' | 'DESIGN_SUPPORT' | 'DESIGN_ACCEPTED' | 'DEPOSIT_MADE' | 'PLANS_ACCEPTED' | 'PAYMENT_COMPLETE' | 'MANUFACTURING' | 'SHIPPING' | 'DELIVERED', user:UserData) => {
 	
 	let shipAddress:makAddress = {
     id: '',
@@ -92,7 +93,7 @@ export const makeNewOrder = (isCart:boolean, stage:'CART' | 'INITIAL_DESIGN' | '
     totalCost: 0,
     deleted: false,
     userId : user.id,
-		handler : 'Mak Studio'
+		handler : {id:'', name:'Mak Studio'}
   }
 
 	return newOrder
@@ -102,36 +103,48 @@ export const ORDERS_OBJ = {
 
 	stages : {
 		CART: "Still in Cart",
-		INITIAL_DESIGN: "Initial Design",
+		DESIGN_SUPPORT: "Design Support",
 		DESIGN_ACCEPTED: "Design Accepted",
 		DEPOSIT_MADE: "Deposit Made",
+		PLANS_ACCEPTED: "Plans accepted",
+		PAYMENT_COMPLETE: "Payment complete",
+		MANUFACTURING: "Manufacturing",
 		SHIPPING: "Shipping",
 		DELIVERED: "Delivered"
 	},
 
 	completion : {
 		CART:2,
-		INITIAL_DESIGN: 20,
-		DESIGN_ACCEPTED: 40,
-		DEPOSIT_MADE: 60,
-		SHIPPING: 80,
+		DESIGN_SUPPORT: 15,
+		DESIGN_ACCEPTED: 30,
+		DEPOSIT_MADE: 45,
+		PLANS_ACCEPTED: 60,
+		PAYMENT_COMPLETE: 75,
+		MANUFACTURING: 85,
+		SHIPPING: 95,
 		DELIVERED: 100
 	},
 
 	colors : {
 		CART:'grey',
-		INITIAL_DESIGN: 'blue',
+		DESIGN_SUPPORT: 'blue',
 		DESIGN_ACCEPTED: 'yellow',
 		DEPOSIT_MADE: 'orange',
+		PLANS_ACCEPTED: 'blue',
+		PAYMENT_COMPLETE: 'green',
+		MANUFACTURING: 'yellow',
 		SHIPPING: 'brown',
 		DELIVERED: 'green'
 	},
 
 	icons : {
 		CART:'ShoppingCart',
-		INITIAL_DESIGN: 'Palette',
+		DESIGN_SUPPORT: 'Palette',
 		DESIGN_ACCEPTED: 'PencilRuler',
 		DEPOSIT_MADE: 'CreditCard',
+		PLANS_ACCEPTED: 'PencilRuler',
+		PAYMENT_COMPLETE: 'CreditCard',
+		MANUFACTURING: 'Clipboard',
 		SHIPPING: 'Truck',
 		DELIVERED: 'ClipboardCheck'
 	}
