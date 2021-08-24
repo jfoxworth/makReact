@@ -5,9 +5,16 @@ import Image from 'next/image';
 
 // Models
 import makOrder from '../../../src/types/makOrder';
+import { ORDERS_OBJ } from '../../../src/types/makOrder';
+
+// Functions
+import calcTaxForOrder from '../../../src/functions/calcTaxForOrder';
+import calcPriceForOrder from '../../../src/functions/calcPriceForOrder';
+import calcShippingForOrder from '../../../src/functions/calcShippingForOrder';
+import calcSubtotalForOrder from '../../../src/functions/calcSubtotalForOrder';
 
 // Hooks
-import useTimeDate from '../../../src/components/Hooks/useTimeDate';
+import useFirestoreImage from '../../../src/components/Hooks/useFirestoreImage';
 
 interface thisProps {
   thisOrder : makOrder  
@@ -23,13 +30,14 @@ const OrderSide = ({thisOrder}:thisProps):ReactElement => {
                     <a href="/cart.html" className="button is-rounded checkout-back">Previous</a>
                 </div>
                 <div className="side-inner has-slimscroll">
+
                     <div className="side-card user-card">
                         <div className="avatar-container">
-                            <img id="checkout-avatar" src="http://via.placeholder.com/250x250" data-demo-src="assets/img/avatars/elie.jpg" alt="" />
+                            <Image src={'http://via.placeholder.com/250x250'} width={'50px'} height={'50px'} alt={'Helper image'} />
                         </div>
                         <div className="meta">
-                            <span>Checkout as</span>
-                            <span id="checkout-username">Elie Daniels</span>
+                            <span>Mak Studio Handler</span>
+                            <span id="checkout-username">{thisOrder.handler.name}</span>
                         </div>
                     </div>
 
@@ -38,32 +46,27 @@ const OrderSide = ({thisOrder}:thisProps):ReactElement => {
                             <input id="shipping-switch" type="checkbox" className="is-switch" />
                             <i></i>
                         </label>
-                        <h3 className="address-title">Shipping Address</h3>
-                        <p className="address">
-                            <var id="shipping-address1">463 San Bernardo Ave</var>, <var id="shipping-address2">Crimson Road</var>
-                            <br/><var id="shipping-city">Long Beach</var>, <var id="shipping-state">CA</var> <var
-                                id="shipping-postalCode">90808</var>
-                            <br/><var id="shipping-country">United States</var>
-                        </p>
+                        <h3 className="address-title">Required Action</h3>
+                        <p className="address">{ORDERS_OBJ.tasks[thisOrder.stage]}</p>
                     </div>
 
                     <div className="side-card is-totals">
                         <h3 className="info-title">Payment Information</h3>
                         <div className="payment-block">
                             <span>Order subtotal</span>
-                            <span id="checkout-subtotal-value" className="has-price">200.37</span>
+                            <span id="checkout-subtotal-value" className="has-price">{calcSubtotalForOrder(thisOrder)}</span>
                         </div>
                         <div className="payment-block">
                             <span>Order shipping</span>
-                            <span id="checkout-shipping-value" className="has-price">0.00</span>
+                            <span id="checkout-shipping-value" className="has-price">{calcShippingForOrder(thisOrder)}</span>
                         </div>
                         <div className="payment-block">
                             <span>Order tax</span>
-                            <span id="checkout-tax-value" className="has-price">7.82</span>
+                            <span id="checkout-tax-value" className="has-price">{calcTaxForOrder(thisOrder)}</span>
                         </div>
                         <div className="payment-block">
                             <span className="is-bold">Order total</span>
-                            <span id="checkout-grandtotal-value" className="has-price is-bold">208.09</span>
+                            <span id="checkout-grandtotal-value" className="has-price is-bold">{calcPriceForOrder(thisOrder)}</span>
                         </div>
                     </div>
 

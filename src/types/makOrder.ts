@@ -18,6 +18,7 @@
 import makVersion from './makVersion';
 import makAddress from './address';
 import UserData from './userData';
+import makOrderStatement from './makOrderStatement';
 
 export default interface makOrder {
 	id 							: string;					// The id of the order
@@ -29,10 +30,8 @@ export default interface makOrder {
 	homeAddress 		: makAddress;
 	shippingAddress : makAddress;
 	billingAddress 	: makAddress;
+	statements			: makOrderStatement[];
 	stage 					: 'CART' | 'DESIGN_SUPPORT' | 'DESIGN_ACCEPTED' | 'DEPOSIT_MADE' | 'PLANS_ACCEPTED' | 'PAYMENT_COMPLETE' | 'MANUFACTURING' | 'SHIPPING' | 'DELIVERED'; 
-	initialCost			: number;
-	tax							: number;
-	totalCost 			: number;
 	deleted 				: boolean;
 	userId					: string;
 	handler					: { id:string, name:string};					// ID and name of the person handling the order
@@ -88,12 +87,10 @@ export const makeNewOrder = (isCart:boolean, stage:'CART' | 'DESIGN_SUPPORT' | '
     shippingAddress : shipAddress,
     billingAddress : billingAddress,
     stage : isCart ? 'CART' : stage,
-    initialCost: 0,
-    tax : 0,
-    totalCost: 0,
-    deleted: false,
+	    deleted: false,
     userId : user.id,
-		handler : {id:'', name:'Mak Studio'}
+		handler : {id:'', name:'Mak Studio'},
+		statements:[]
   }
 
 	return newOrder
@@ -113,6 +110,18 @@ export const ORDERS_OBJ = {
 		DELIVERED: "Delivered"
 	},
 
+	tasks : {
+		CART: "",
+		DESIGN_SUPPORT: "View the design proposals and then either accept them or ask for changes. Designs for all items must be accepted.",
+		DESIGN_ACCEPTED: "To move to the next step, a deposit amount is required. Make sure that your billing and shipping address is correct.",
+		DEPOSIT_MADE: "Accept the final plans and the ability to make a final payment is enabled.",
+		PLANS_ACCEPTED: "Once the final payment is made, the product will go into manufacturing and be shippind.",
+		PAYMENT_COMPLETE: "Payment complete. The item(s) will be manufactured as soon as possible.",
+		MANUFACTURING: "The item(s) are being manufactured. Make sure that your shipping address is correct.",
+		SHIPPING: "The item(s) are being shipped!!!",
+		DELIVERED: "Delivered and complete."
+	},
+
 	completion : {
 		CART:2,
 		DESIGN_SUPPORT: 15,
@@ -123,6 +132,18 @@ export const ORDERS_OBJ = {
 		MANUFACTURING: 85,
 		SHIPPING: 95,
 		DELIVERED: 100
+	},
+
+	step : {
+		CART:0,
+		DESIGN_SUPPORT: 1,
+		DESIGN_ACCEPTED: 2,
+		DEPOSIT_MADE: 3,
+		PLANS_ACCEPTED: 4,
+		PAYMENT_COMPLETE: 5,
+		MANUFACTURING: 6,
+		SHIPPING: 7,
+		DELIVERED: 8
 	},
 
 	colors : {

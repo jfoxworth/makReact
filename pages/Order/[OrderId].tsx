@@ -1,7 +1,8 @@
 
 // Standard React items
-import { FC, ReactElement } from 'react';
+import { FC, ReactElement, useState } from 'react';
 import { useRouter } from 'next/router';
+import { selectUser } from '../../src/redux/user/user.selector';
 
 // Models
 import makOrder from '../../src/types/makOrder';
@@ -13,13 +14,10 @@ import { useSelector, useDispatch } from 'react-redux';
 
 // Components
 import HeaderTitle from '../../src/components/HeaderTitle';
-import OrderItemList from './OrderItemList';
+import Stage1 from './Stage1';
 import OrderSide from './OrderSide';
 import OrderStep from './OrderStep';
 
-// Models
-import { ORDERS_OBJ } from '../../src/types/makOrder';
-import makProject from '../../src/types/makProject';
 
 const OrderId:FC = ():ReactElement => {
 
@@ -29,7 +27,6 @@ const OrderId:FC = ():ReactElement => {
   let thisOrder =  {} as makOrder;
 	let projectData = useSelector(selectProjects);
 	let projects = projectData.projects;
-	let thisProject = {} as makProject;
 
 	// Pull the product ID from the URL
   const router = useRouter()
@@ -41,24 +38,31 @@ const OrderId:FC = ():ReactElement => {
     thisOrder = orders.filter((order:makOrder)=>order.id==OrderId)[0];
 	} 
 
+
+	const [viewStage, setViewStage] = useState(1);
+	const user = useSelector(selectUser);
+
   return(
     
     <>
       {
-        !thisOrder.id &&
+        (!thisOrder.id || !user) &&
         <HeaderTitle text={`Loading`} />
       }
 
 			{
-				thisOrder.id && 
+				thisOrder.id && user &&
 
 				<div id="checkout-1" className="section no-padding">
 					<OrderStep thisOrder={thisOrder} />
 					<div className="checkout-wrapper" data-checkout-step="1">
-		
 						<div className="checkout-main">
 							<div className="checkout-container">
-								<OrderItemList thisOrder={thisOrder} projects={projects} />
+								<HeaderTitle text={`Order - ${thisOrder.dateCreated}`} />
+
+								{
+									viewStage == 1 && <Stage1 thisOrder={thisOrder} projects={projects} user={user.currentUser} />
+								}
 							</div>
 						</div>
 						<OrderSide thisOrder={thisOrder} />

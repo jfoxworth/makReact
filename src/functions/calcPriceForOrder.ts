@@ -11,7 +11,7 @@
 */
 
 import calcTaxForItem from "./calcTaxForItem";
-import calcShippinForItem from "./calcShippingForItem";
+import calcShippingForItem from "./calcShippingForItem";
 import makOrder from "../types/makOrder";
 import makVersion from "../types/makVersion";
 
@@ -19,7 +19,7 @@ const calcPriceForOrder = (order:makOrder):number => {
 
   let totalPrice = 0;
   order.items.map((item:makVersion)=>{
-    totalPrice = totalPrice + item.price + calcTaxForItem(item.price) + calcShippinForItem(item);
+    totalPrice = totalPrice + item.price + calcTaxForItem(item.price) + calcShippingForItem(item);
   });
 
   return totalPrice
